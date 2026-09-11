@@ -1,0 +1,19 @@
+# 로컬 환경 및 비밀정보
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+# IDE / OS / Python 생성 파일
+.idea/
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.coverage

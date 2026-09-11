@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="코인 수익률과 거래 수수료, 물타기·불타기 후 평균 단가를 계산하세요.">
+  <title>암호화폐 수익률 계산기</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <header><a href="/" class="brand"><span class="brand-mark" aria-hidden="true">%</span>암호화폐 수익률 계산기</a><span class="header-note">로그인 없이 간편하게</span></header>
+  <div class="layout">
+    <aside class="ad-space" aria-label="왼쪽 광고 예약 공간"><span>광고 영역</span></aside>
+    <main>
+      <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1>숫자로 확인하는 나의 투자</h1><p>거래 손익부터 추가 매수 후 평균 단가까지 계산해보세요.</p></div>
+      <nav class="tabs" role="tablist" aria-label="계산 종류">
+        <button id="tab-profit" role="tab" aria-selected="true" aria-controls="calculator" data-mode="profit">수익률 계산</button>
+        <button id="tab-down" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="down">물타기</button>
+        <button id="tab-up" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="up">불타기</button>
+      </nav>
+      <section id="calculator" class="card" role="tabpanel" aria-labelledby="tab-profit">
+        <div class="section-heading"><h2 id="form-title">수익률 계산</h2><span>모든 금액은 원(KRW) 기준</span></div>
+        <p id="explanation" class="explanation">매수·매도 단가와 보유 수량 또는 투자금액을 입력하세요. 수수료율은 매수와 매도에 각각 적용됩니다.</p>
+        <form id="calculation-form">
+          <div class="fields">
+            <label>매수 단가 <span class="input-wrap"><input name="buy_price" type="number" step="any" min="0" required placeholder="예: 100000"><span>원</span></span></label>
+            <label id="sell-field">매도 단가 <span class="input-wrap"><input name="sell_price" type="number" step="any" min="0" required placeholder="예: 120000"><span>원</span></span></label>
+            <label>보유분 입력 방식<select name="holding_unit"><option value="quantity">수량으로 입력</option><option value="amount">투자금액으로 입력</option></select></label>
+            <label><span id="holding-label">보유 수량</span><span class="input-wrap"><input name="holding_value" type="number" step="any" min="0" required placeholder="예: 0.5"><span id="holding-suffix">개</span></span></label>
+            <label id="fee-field">수수료율 <span class="input-wrap"><input name="fee_percent" type="number" step="any" min="0" max="100" value="0" required><span>%</span></span><small>매수·매도 각각 적용 · 기본 0%</small></label>
+          </div>
+          <fieldset id="additional-fields" hidden disabled>
+            <legend>추가 매수</legend>
+            <div class="fields">
+              <label>추가 매수 단가<span class="input-wrap"><input name="additional_price" type="number" step="any" min="0" required placeholder="추가로 구매할 단가"><span>원</span></span></label>
+              <label>추가분 입력 방식<select name="additional_unit"><option value="quantity">수량으로 입력</option><option value="amount">매수금액으로 입력</option></select></label>
+              <label><span id="additional-label">추가 수량</span><span class="input-wrap"><input name="additional_value" type="number" step="any" min="0" required placeholder="추가로 구매할 수량"><span id="additional-suffix">개</span></span></label>
+            </div>
+          </fieldset>
+          <p id="error" class="error" role="alert" hidden></p>
+          <div class="actions"><button type="submit" class="primary">확인 · 계산하기 <span aria-hidden="true">→</span></button><button type="button" id="clear-inputs" class="secondary">전체 초기화</button></div>
+        </form>
+      </section>
+      <section class="results" aria-live="polite" aria-atomic="true"><div class="section-heading"><h2>계산 결과</h2><span id="result-caption">입력 후 확인을 눌러주세요</span></div><div id="result-body" class="result-empty">예상 손익과 수익률이 여기에 표시됩니다.</div></section>
+      <p class="session-note" id="session-note" role="status">입력값은 이 탭의 브라우저 세션에 보관되며, 최초 저장 후 1시간이 지나면 삭제됩니다.</p>
+      <noscript>계산기 사용과 입력값 저장을 위해 JavaScript를 활성화해주세요.</noscript>
+    </main>
+    <aside class="ad-space" aria-label="오른쪽 광고 예약 공간"><span>광고 영역</span></aside>
+  </div>
+  <footer>© {{ 2026 }} Coin Calculator. All rights reserved.</footer>
+</body>
+</html>
