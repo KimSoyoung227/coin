@@ -1,0 +1,25 @@
+name: Test EC2 Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create test file
+        run: |
+          echo "GitHub Actions deploy test" > deploy-test.txt
+
+      - name: Copy test file to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "deploy-test.txt"
+          target: "/home/${{ secrets.EC2_USERNAME }}/"
