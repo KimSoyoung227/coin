@@ -23,7 +23,14 @@ jobs:
           python-version: "3.9"    
           
       - name: Package application
-      - run: pip install -r requirements.txt --target ./libs tar -czf coin.tar.gz ./*
+        run: |
+          pip install -r requirements.txt --target ./libs
+          tar -czf coin.tar.gz \
+          --exclude=".git" \
+          --exclude=".github" \
+          --exclude=".venv" \
+          --exclude="venv" \
+          .
 
       - name: Copy tar.gz EC2
        uses: appleboy/scp-action@master
@@ -31,7 +38,17 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
+        source: "coin.tar.gz"
+        target: "/home/${{ secrets.EC2_USERNAME }}/app
+
+      - namee: Deploy on EC2
+        uses: appleboy/ssh-action@master
+        with:
+         host: ${{ secrets.EC2_HOST }}
+         username: ${{ secrets.EC2_USERNAME }}
+         key: ${{ secrets.EC2_SSH_KEY }}
+         script: |
+          mkdir -p /home/${{ secrets.EC2_USERNAME }}/app/dist
           cd /home/${{ secrets.EC2_USERNAME }}/app
-          tar -xzf coin.tar.gz -C ./dist --strip-components=1
+          tar -xzf coin.tar.gz -C ./dist
           rm coin.tar.gz
