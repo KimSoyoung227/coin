@@ -108,5 +108,10 @@ def create_app() -> Flask:
     def create_csp_nonce():
         g.csp_nonce = secrets.token_urlsafe(16)
 
+
+    @app.get("/ads.txt")
+    def ads_txt():
+        return app.send_static_file("ads.txt")
+
     return app
 
