@@ -44,11 +44,11 @@ def create_app() -> Flask:
             
                 # AdSense Strict CSP
                 f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
-                "'strict-dynamic' https: http:; "
+                "'strict-dynamic' https://*.google.com https://*.googlesyndication.com https://googlesyndication.com; "
                 # AdSense iframe
                 "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://googleads.g.doubleclick.net; "
                 # AdSense 네트워크 통신
-                "connect-src 'self' https://*.google.com https://*.google-analytics.com https://*.googlesyndication.com https://ep*.adtrafficquality.google; "
+                "connect-src 'self' https://*.google.com https://*.google-analytics.com https://*.googlesyndication.com https://*.adtrafficquality.google; "
             
                 # 기존 보안 정책
                 "object-src 'none'; "
@@ -58,7 +58,7 @@ def create_app() -> Flask:
                 
                 # 자체 리소스
                 "style-src 'self' 'unsafe-inline'; "
-                "img-src 'self' data:; "
+                "img-src 'self' data: https://*.google.com https://*.gptimages.g.doubleclick.net https://*.googlesyndication.com; "
         )
 
         response.headers["Referrer-Policy"] = "no-referrer"
