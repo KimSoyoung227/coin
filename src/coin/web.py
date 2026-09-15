@@ -38,12 +38,11 @@ def create_app() -> Flask:
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
 
-        nonce = g.get("csp_nonce", "")
         response.headers["Content-Security-Policy"] = (
                 "default-src 'self'; "
             
                 # AdSense Strict CSP
-                f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
+                f"script-src 'unsafe-inline' 'unsafe-eval' "
                 "'strict-dynamic' https://*.google.com https://*.googlesyndication.com https://googlesyndication.com; "
                 # AdSense iframe
                 "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google https://googleads.g.doubleclick.net; "
