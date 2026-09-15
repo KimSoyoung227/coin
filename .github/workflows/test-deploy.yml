@@ -67,7 +67,7 @@ jobs:
 
       - name: Create test file
         run: |
-          echo "GitHub Actions deployment test" > deploy-test.txt"
+          echo "GitHub Actions deployment test" > deploy-test.txt
 
       - name: Test SCP
         uses: appleboy/scp-action@v1
