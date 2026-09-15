@@ -25,7 +25,7 @@ jobs:
           
       - name: Package application
         run: |
-          tar -czf coin.tar.gz \
+          tar -czf "$RUNNER_TEMP/coin.tar.gz" \
             --exclude=".git" \
             --exclude=".github" \
             --exclude=".venv" \
