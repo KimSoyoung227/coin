@@ -46,7 +46,7 @@ def create_app() -> Flask:
                 f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
                 "'strict-dynamic' https://*.google.com https://*.googlesyndication.com https://googlesyndication.com; "
                 # AdSense iframe
-                "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://googleads.g.doubleclick.net; "
+                "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google https://googleads.g.doubleclick.net; "
                 # AdSense 네트워크 통신
                 "connect-src 'self' https://*.google.com https://*.google-analytics.com https://*.googlesyndication.com https://*.adtrafficquality.google; "
             
