@@ -140,4 +140,3 @@ if (saved && modes.includes(saved.mode) && saved.drafts && typeof saved.drafts =
   drafts = saved.drafts; selectMode(saved.mode, false);
   timer = setTimeout(() => reset(true), session.remaining());
 } else { session.clear(); selectMode('profit', false); }
-<script nonce="{{ g.csp_nonce }}" src="{{ url_for('static', filename='app.js') }}"></script>
