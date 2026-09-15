@@ -42,7 +42,7 @@ def create_app() -> Flask:
                 "default-src 'self'; "
             
                 # AdSense Strict CSP
-                f"script-src 'unsafe-inline' 'unsafe-eval' "
+                f"script-src 'self' 'unsafe-inline' 'unsafe-eval' "
                 "https://*.google.com https://*.googlesyndication.com https://googlesyndication.com; "
                 # AdSense iframe
                 "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google https://googleads.g.doubleclick.net; "
