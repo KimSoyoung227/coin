@@ -39,19 +39,23 @@ def create_app() -> Flask:
         response.headers["X-Content-Type-Options"] = "nosniff"
 
         nonce = g.get("csp_nonce", "")
-
         response.headers["Content-Security-Policy"] = (
                 "default-src 'self'; "
             
                 # AdSense Strict CSP
                 f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
                 "'strict-dynamic' https: http:; "
+                # AdSense iframe
+                "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://googleads.g.doubleclick.net; "
+                # AdSense 네트워크 통신
+                "connect-src 'self' https://*.google.com https://*.google-analytics.com https://*.googlesyndication.com https://ep1.adtrafficquality.google; "
             
                 # 기존 보안 정책
                 "object-src 'none'; "
                 "base-uri 'none'; "
                 "form-action 'self'; "
                 "frame-ancestors 'none'; "
+                
             
                 # 자체 리소스
                 "style-src 'self' 'unsafe-inline'; "
@@ -59,6 +63,7 @@ def create_app() -> Flask:
                 "frame-src 'self'; "
                 "connect-src 'self';"
         )
+
         response.headers["Referrer-Policy"] = "no-referrer"
         return response
 
