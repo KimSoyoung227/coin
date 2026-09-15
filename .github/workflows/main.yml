@@ -73,7 +73,7 @@ jobs:
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_SSH_KEY }}
          script: |
-            /home/${{ secrets.EC2_USERNAME }}/app/deploy-coin.sh
+            /home/${{ secrets.EC2_USERNAME }}/script/deploy-coin.sh
 
       - name: Remove SSH rule
         if: always()
