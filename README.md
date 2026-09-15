@@ -10,7 +10,7 @@
 - `requirements.txt`: 검증한 의존성 버전
 - `src/coin/__main__.py`: 기본 포트 5050의 로컬 실행 진입점
 - `src/coin/templates/index.html`: 원페이지 화면
-- `src/coin/static/style.css`: 반응형 레이아웃 및 광고 여백
+- `src/coin/static/style.css`: 반응형 레이아웃 및 화면 여백
 - `src/coin/static/app.js`: 탭, 입력 및 계산 결과 표시
 - `src/coin/static/session.js`: 브라우저 세션 보관 및 1시간 만료
 - `tests/test_session.mjs`: 저장 및 만료 검증 (Node.js 사용, 추가 패키지 없음)
