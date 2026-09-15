@@ -43,7 +43,7 @@ def create_app() -> Flask:
             
                 # AdSense Strict CSP
                 f"script-src 'self' 'unsafe-inline' 'unsafe-eval' "
-                "https://*.google.com https://*.googlesyndication.com https://googlesyndication.com; "
+                "https://*.google.com https://*.googlesyndication.com https://googlesyndication.com https://*.adtrafficquality.google; "
                 # AdSense iframe
                 "frame-src 'self' https://*.google.com https://doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google https://googleads.g.doubleclick.net; "
                 # AdSense 네트워크 통신
