@@ -73,13 +73,13 @@ jobs:
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_SSH_KEY }}
          script: |
-            /home/${{ vars.EC2_USERNAME }}/app/deploy-coin.sh
+            /home/${{ secrets.EC2_USERNAME }}/app/deploy-coin.sh
 
       - name: Remove SSH rule
         if: always()
         run: |
           aws ec2 revoke-security-group-ingress \
-            --group-id ${{ vars.EC2_SECURITY_GROUP_ID }} \
+            --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} \
             --protocol tcp \
             --port 22 \
             --cidr ${{ steps.runner-ip.outputs.runner_ip }}/32
