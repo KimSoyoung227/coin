@@ -62,15 +62,15 @@ jobs:
             --cidr ${{ steps.runner-ip.outputs.runner_ip }}/32
 
       - name: Copy tar.gz EC2
-       uses: appleboy/scp-action@master
-       with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        source: "coin.tar.gz"
-        target: "/home/${{ secrets.EC2_USERNAME }}/app
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "coin.tar.gz"
+          target: "/home/${{ secrets.EC2_USERNAME }}/app"
 
-      - namee: Deploy on EC2
+      - name: Deploy on EC2
         uses: appleboy/ssh-action@v1
         with:
          host: ${{ secrets.EC2_HOST }}
