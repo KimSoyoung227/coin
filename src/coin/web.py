@@ -58,7 +58,7 @@ def create_app() -> Flask:
                 
                 # 자체 리소스
                 "style-src 'self' 'unsafe-inline'; "
-                "img-src 'self' data: https://*.google.com https://*.gptimages.g.doubleclick.net https://*.googlesyndication.com; "
+                "img-src 'self' data: https://*.google.com https://*.gptimages.g.doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google; "
         )
 
         response.headers["Referrer-Policy"] = "no-referrer"
