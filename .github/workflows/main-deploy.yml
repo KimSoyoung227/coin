@@ -1,15 +1,16 @@
 name: Deploy Python App to EC2
-run-name: ${{ github.actor }} is zip the file and push to EC2 🚀
+run-name: ${{ github.actor }} is zip the file and push to EC2
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      
+    push:
+      branches:
+        - main
+
 permissions:
-  id-token: write
-  contents: read
+    id-token: write
+    contents: read
   
 jobs:
   deploy:
@@ -88,4 +89,3 @@ jobs:
             --protocol tcp \
             --port 22 \
             --cidr ${{ steps.runner-ip.outputs.runner_ip }}/32
-            
