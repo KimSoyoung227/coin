@@ -2,7 +2,9 @@
 
 from dataclasses import asdict
 
-from flask import Flask, jsonify, request, render_template
+import secrets
+
+from flask import Flask, g, jsonify, request, render_template
 from werkzeug.exceptions import HTTPException
 
 from coin.calculations import calculate_average, calculate_profit, quantity_from_amount
@@ -35,8 +37,14 @@ def create_app() -> Flask:
         """개인 입력과 결과의 캐싱을 방지하고 기본 브라우저 보안 정책을 설정한다."""
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
+
+        nonce = g.get("csp_nonce", "")
+
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; base-uri 'none'; frame-ancestors 'none'; "
+            "default-src 'self'; "
+            f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
+            "'strict-dynamic' https: http:; "
+            "base-uri 'none'; frame-ancestors 'none'; "
             "form-action 'self'; object-src 'none'"
         )
         response.headers["Referrer-Policy"] = "no-referrer"
@@ -82,4 +90,9 @@ def create_app() -> Flask:
             return jsonify(error=str(error)), 400
         return jsonify(mode=mode, result=asdict(result))
 
+    @app.before_request
+    def create_csp_nonce():
+        g.csp_nonce = secrets.token_urlsafe(16)
+
     return app
+
