@@ -42,7 +42,7 @@ jobs:
       - name: Get GitHub Runner public IP
         id: runner-ip
         run: |
-          RUNNER_IP=${(curl -fsS https://checkip.amazonaws.com)
+          RUNNER_IP=$(curl -fsS https://checkip.amazonaws.com)
           echo "runner_ip=$RUNNER_IP" >> "$GITHUB_OUTPUT"
           echo "Runner IP : $RUNNER_IP"
           
