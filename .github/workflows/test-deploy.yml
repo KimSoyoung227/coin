@@ -18,8 +18,8 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_RPLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_RPLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Test AWS OIDC authentication
         run: |
@@ -35,7 +35,7 @@ jobs:
       - name: Allow SSH from GitHub Runner
         run: |
           aws ec2 authorize-security-group-ingress \
-          --group-id ${{ vars.EC2_SECURITY_GROUP_ID }} \
+          --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} \
           --protocol tcp \
           --port 22 \
           --cidr ${{ steps.runner-ip.outputs.runner_ip }}/32
@@ -68,7 +68,7 @@ jobs:
         if: always()
         run: |
           aws ec2 revoke-security-group-ingress \
-            --group-id ${{ vars.EC2_SECURITY_GROUP_ID }} \
+            --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} \
             --protocol tcp \
             --port 22\
             --cidr ${{ steps.runner-ip.outputs.runner_ip }}/32
