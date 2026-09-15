@@ -6,11 +6,8 @@
   <meta name="description" content="코인 수익률과 거래 수수료, 물타기·불타기 후 평균 단가를 계산하세요.">
   <title>암호화폐 수익률 계산기</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>
-  <script nonce="{{ g.csp_nonce }}"
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445813934260982"
-        crossorigin="anonymous"></script>
+  <script type="module" nonce="{{ g.csp_nonce }}"  src="{{ url_for('static', filename='app.js') }}"></script>
+  <script nonce="{{ g.csp_nonce }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445813934260982" crossorigin="anonymous"></script>
 </head>
 <body>
   <header><a href="/" class="brand"><span class="brand-mark" aria-hidden="true">%</span>암호화폐 수익률 계산기</a><span class="header-note">로그인 없이 간편하게</span></header>

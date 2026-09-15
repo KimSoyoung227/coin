@@ -44,8 +44,12 @@ def create_app() -> Flask:
             "default-src 'self'; "
             f"script-src 'nonce-{nonce}' 'unsafe-inline' 'unsafe-eval' "
             "'strict-dynamic' https: http:; "
-            "base-uri 'none'; frame-ancestors 'none'; "
-            "form-action 'self'; object-src 'none'"
+            "object-src 'none'; "
+            "base-uri 'none'; "
+            "style-src 'self' 'unsafe-inline' https:; "
+            "img-src 'self' data: https:; "
+            "form-action 'self'; "
+            "frame-ancestors 'none'"
         )
         response.headers["Referrer-Policy"] = "no-referrer"
         return response
