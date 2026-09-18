@@ -46,7 +46,7 @@ class WebTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('암호화폐 수익률 계산기', response.get_data(as_text=True))
         self.assertIn('role="tablist"', response.get_data(as_text=True))
-        for asset in ("app.js", "i18n.js", "session.js", "style.css"):
+        for asset in ("app.js", "i18n.js", "rates.js", "session.js", "style.css"):
             with self.subTest(asset=asset):
                 response = self.client.get("/static/" + asset)
                 self.assertEqual(response.status_code, 200)
@@ -122,6 +122,29 @@ class WebTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/calculate").status_code, 405)
         self.assertEqual(self.client.post("/api/calculate", data=" " * 17000,
                                          content_type="application/json").status_code, 413)
+
+    def test_market_rates_endpoint(self):
+        """시세 서비스 결과와 부분 오류를 JSON으로 전달한다."""
+        class StubMarket:
+            def snapshot(self):
+                return {"groups": {"bitcoin": {"items": {"BTC": 1}}},
+                        "errors": ["metals"]}
+        self.app.extensions["market_service"] = StubMarket()
+        response = self.client.get("/api/market-rates")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["groups"]["bitcoin"]["items"]["BTC"], 1)
+        self.assertEqual(response.headers["Cache-Control"], "no-store")
+
+    def test_market_layout_and_sources(self):
+        """환율 표와 두 API 출처를 사용자 화면에 표시한다."""
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('class="market-card"', page)
+        self.assertIn("ExchangeRate.fun", page)
+        self.assertIn("Gold API", page)
+        self.assertIn('id="market-base-currency"', page)
+        self.assertNotIn('id="rate-to"', page)
+        for currency in ("KRW", "USD", "CNY", "EUR"):
+            self.assertGreaterEqual(page.count(f'value="{currency}"'), 2)
 
 
 if __name__ == "__main__":

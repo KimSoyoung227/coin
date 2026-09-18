@@ -8,6 +8,7 @@ from flask import Flask, g, jsonify, request, render_template
 from werkzeug.exceptions import HTTPException
 
 from coin.calculations import calculate_average, calculate_profit, quantity_from_amount
+from coin.market import MarketService
 
 
 def _quantity(data: dict, price_key: str, quantity_key: str, amount_key: str) -> float:
@@ -26,6 +27,8 @@ def create_app() -> Flask:
     app = Flask(__name__)
     app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
     app.json.ensure_ascii = False
+    market_service = MarketService()
+    app.extensions["market_service"] = market_service
 
     @app.get("/")
     def index():
@@ -103,6 +106,13 @@ def create_app() -> Flask:
         except ValueError as error:
             return jsonify(error=str(error)), 400
         return jsonify(mode=mode, result=asdict(result))
+
+    @app.get("/api/market-rates")
+    def market_rates():
+        """캐시된 환율·원자재·비트코인 가격과 조회 완료 시각을 제공한다."""
+        result = app.extensions["market_service"].snapshot()
+        status = 200 if result["groups"] else 503
+        return jsonify(result), status
 
     @app.before_request
     def create_csp_nonce():

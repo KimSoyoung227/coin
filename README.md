@@ -13,6 +13,8 @@
 - `src/coin/static/style.css`: 반응형 레이아웃 및 화면 여백
 - `src/coin/static/app.js`: 탭, 입력 및 계산 결과 표시
 - `src/coin/static/session.js`: 브라우저 세션 보관 및 1시간 만료
+- `src/coin/market.py`: 환율·금속·비트코인 조회, 단위 환산 및 메모리 캐시
+- `src/coin/static/rates.js`: 반응형 시세 표 표시 및 1분 갱신
 - `tests/test_session.mjs`: 저장 및 만료 검증 (Node.js 사용, 추가 패키지 없음)
 - `WORK_LOG.md`: 작업 일지 및 정책
 
@@ -35,7 +37,8 @@ macOS AirPlay 서비스와의 포트 충돌을 피하도록 기본 포트를 505
 
 세션 테스트: `node tests/test_session.mjs`
 
-API는 JSON 객체를 받습니다. `mode`는 `profit`(기본), `down`, `up`입니다.
+계산 API는 JSON 객체를 받습니다. `mode`는 `profit`(기본) 또는 `average`입니다.
+환율·시세는 `GET /api/market-rates`에서 원화 기준으로 제공됩니다. BTC는 1분, 금·은·구리는 5분, 통화는 1시간 동안 프로세스 메모리에 캐시되며 DB는 사용하지 않습니다.
 공통 입력은 `buy_price`와 `quantity` 또는 `amount` 중 하나입니다.
 수익률은 `sell_price`, 선택 항목 `fee_percent`(기본 0%)를 받습니다.
 평균 단가 계산은 `mode=average`, `additional_price`와 `additional_quantity` 또는 `additional_amount` 중 하나를 받습니다.

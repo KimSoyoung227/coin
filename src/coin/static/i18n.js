@@ -19,9 +19,23 @@ Object.assign(messages.ko, {metaDescription:'주식 코인 암호화폐의 수�
 Object.assign(messages['en-US'], {metaDescription:'Calculate stock and crypto returns, trading fees, and average price after additional purchases.', tabAverage:'Average Price', descAverage:'Calculate the average price when making an additional purchase. Purchase amount and average price exclude fees.'});
 Object.assign(messages.es, {metaDescription:'Calcula rentabilidad, comisiones y precio medio tras compras adicionales.', tabAverage:'Precio medio', descAverage:'Calcula el precio medio al realizar una compra adicional. El importe y el precio medio no incluyen comisiones.'});
 Object.assign(messages.zh, {metaDescription:'计算股票和加密货币收益、交易手续费及追加买入后的平均价格。', tabAverage:'平均单价计算', descAverage:'计算追加买入后的平均单价。买入金额和平均单价不含手续费。'});
+Object.assign(messages.ko, {marketTitle:'환율·시세',marketRefresh:'시세 새로고침',marketBase:'원화 기준 참고 시세',marketAsset:'자산',marketPrice:'가격',marketLoading:'시세를 불러오는 중…',marketSources:'출처',marketCurrencyTime:'환율 조회 완료',marketMetalTime:'금속 조회 완료',marketBitcoinTime:'비트코인 조회 완료',marketStale:'이전 시세',marketPartialError:'일부 시세를 불러오지 못했습니다.',marketError:'시세를 불러올 수 없습니다.',rateKRW:'대한민국 원',rateUSD:'미국 달러',rateCNY:'중국 위안',rateJPY:'일본 엔',rateEUR:'유로',rateGBP:'영국 파운드',rateGold:'금',rateSilver:'은',rateCopper:'구리',rateBitcoin:'비트코인'});
+Object.assign(messages['en-US'], {marketTitle:'Rates & Markets',marketRefresh:'Refresh rates',marketBase:'Reference prices in KRW',marketAsset:'Asset',marketPrice:'Price',marketLoading:'Loading market rates…',marketSources:'Sources',marketCurrencyTime:'FX completed',marketMetalTime:'Metals completed',marketBitcoinTime:'Bitcoin completed',marketStale:'cached data',marketPartialError:'Some rates could not be loaded.',marketError:'Market rates are unavailable.',rateKRW:'Korean Won',rateUSD:'US Dollar',rateCNY:'Chinese Yuan',rateJPY:'Japanese Yen',rateEUR:'Euro',rateGBP:'British Pound',rateGold:'Gold',rateSilver:'Silver',rateCopper:'Copper',rateBitcoin:'Bitcoin'});
+Object.assign(messages.es, {marketTitle:'Tipos y mercados',marketRefresh:'Actualizar precios',marketBase:'Precios de referencia en KRW',marketAsset:'Activo',marketPrice:'Precio',marketLoading:'Cargando precios…',marketSources:'Fuentes',marketCurrencyTime:'Divisas consultadas',marketMetalTime:'Metales consultados',marketBitcoinTime:'Bitcoin consultado',marketStale:'datos anteriores',marketPartialError:'No se pudieron cargar algunos precios.',marketError:'Los precios no están disponibles.',rateKRW:'Won surcoreano',rateUSD:'Dólar estadounidense',rateCNY:'Yuan chino',rateJPY:'Yen japonés',rateEUR:'Euro',rateGBP:'Libra esterlina',rateGold:'Oro',rateSilver:'Plata',rateCopper:'Cobre',rateBitcoin:'Bitcoin'});
+Object.assign(messages.zh, {marketTitle:'汇率与行情',marketRefresh:'刷新行情',marketBase:'韩元参考价格',marketAsset:'资产',marketPrice:'价格',marketLoading:'正在加载行情…',marketSources:'数据来源',marketCurrencyTime:'汇率查询完成',marketMetalTime:'金属查询完成',marketBitcoinTime:'比特币查询完成',marketStale:'缓存数据',marketPartialError:'部分行情无法加载。',marketError:'无法加载行情。',rateKRW:'韩元',rateUSD:'美元',rateCNY:'人民币',rateJPY:'日元',rateEUR:'欧元',rateGBP:'英镑',rateGold:'黄金',rateSilver:'白银',rateCopper:'铜',rateBitcoin:'比特币'});
+Object.assign(messages.ko, {rateCompare:'환율 비교',rateFrom:'기준 통화',rateTo:'대상 통화'});
+Object.assign(messages['en-US'], {rateCompare:'Compare rates',rateFrom:'Base currency',rateTo:'Target currency'});
+Object.assign(messages.es, {rateCompare:'Comparar tipos',rateFrom:'Moneda base',rateTo:'Moneda destino'});
+Object.assign(messages.zh, {rateCompare:'汇率比较',rateFrom:'基准货币',rateTo:'目标货币'});
+Object.assign(messages.ko, {rateBase:'기준 통화'});
+Object.assign(messages['en-US'], {rateBase:'Base currency'});
+Object.assign(messages.es, {rateBase:'Moneda base'});
+Object.assign(messages.zh, {rateBase:'基准货币'});
 for (const dictionary of Object.values(messages)) {
   delete dictionary.tabDown; delete dictionary.tabUp;
   delete dictionary.descDown; delete dictionary.descUp;
+  delete dictionary.rateCompare; delete dictionary.rateFrom; delete dictionary.rateTo;
+  delete dictionary.marketBase;
 }
 
 /** 지원 언어만 허용하고 번역 키를 반환한다. */

@@ -46,6 +46,14 @@
       <p class="session-note" id="session-note" role="status">입력값은 이 탭의 브라우저 세션에 보관되며, 최초 저장 후 1시간이 지나면 삭제됩니다.</p>
       <noscript data-i18n="noscript">계산기 사용과 입력값 저장을 위해 JavaScript를 활성화해주세요.</noscript>
     </main>
+    <aside class="market-card" aria-labelledby="market-title">
+      <div class="market-heading"><h2 id="market-title" data-i18n="marketTitle">환율·시세</h2><button type="button" id="market-refresh" data-i18n-aria="marketRefresh" aria-label="새로고침">↻</button></div>
+      <label class="market-base"><span data-i18n="rateBase">기준 통화</span><select id="market-base-currency" aria-label="기준 통화" data-i18n-aria="rateBase"><option value="KRW">KRW</option><option value="USD">USD</option><option value="CNY">CNY</option><option value="EUR">EUR</option></select></label>
+      <div class="market-scroll"><table><thead><tr><th data-i18n="marketAsset">자산</th><th id="market-price-heading" data-i18n="marketPrice">가격</th></tr></thead><tbody id="market-body"><tr><td colspan="2" data-i18n="marketLoading">시세를 불러오는 중…</td></tr></tbody></table></div>
+      <div id="market-times" class="market-times" aria-live="polite"></div>
+      <p id="market-error" class="market-error" role="status" hidden></p>
+      <p class="market-sources"><span data-i18n="marketSources">출처</span>: <a href="https://www.exchangerate.fun/" target="_blank" rel="noopener noreferrer">ExchangeRate.fun</a> · <a href="https://gold-api.com/" target="_blank" rel="noopener noreferrer">Gold API</a></p>
+    </aside>
   </div>
   <footer>© {{ 2026 }} Coin Calculator. <span data-i18n="copyright">All rights reserved.</span></footer>
 </body>

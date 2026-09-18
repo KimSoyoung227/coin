@@ -1,6 +1,7 @@
 /** 입력, 탭 접근성, Python API 호출 및 세션 만료를 연결한다. */
 import {createSession} from './session.js';
 import {translator} from './i18n.js';
+import {refreshMarketRates, renderMarketRates, startMarketRates} from './rates.js';
 const $ = id => document.getElementById(id);
 const form = $('calculation-form');
 const field = name => form.elements.namedItem(name);
@@ -28,6 +29,7 @@ function applyLanguage(next, save = true) {
   $('session-note').textContent = t(sessionStatus);
   invalidate();
   if (result) renderResult(result);
+  renderMarketRates(language, t);
   if (save) persist();
 }
 /** 선택 통화를 입력 단위와 기존 계산 결과에 즉시 반영한다. */
@@ -161,6 +163,7 @@ tabs.forEach((tab, index) => {
 $('clear-inputs').addEventListener('click', () => reset());
 document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
 $('currency-select').addEventListener('change', event => applyCurrency(event.target.value));
+$('market-refresh').addEventListener('click', () => refreshMarketRates(language, t));
 document.addEventListener('visibilitychange', checkExpiry);
 window.addEventListener('pageshow', checkExpiry);
 window.addEventListener('focus', checkExpiry);
@@ -175,3 +178,4 @@ if (saved && ['profit', 'average', 'down', 'up'].includes(saved.mode) && saved.d
   applyLanguage(language, false); applyCurrency(currency, false); selectMode(saved.mode, false);
   timer = setTimeout(() => reset(true), session.remaining());
 } else { session.clear(); applyLanguage('ko', false); applyCurrency('KRW', false); selectMode('profit', false); }
+startMarketRates(() => ({language, t}));
