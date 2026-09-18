@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" data-i18n-content="metaDescription" content="주식 코인 암호화폐의 수익률과 거래 수수료, 물타기·불타기 후 평균 단가를 계산하세요.">
+  <meta name="description" data-i18n-content="metaDescription" content="주식 코인 암호화폐의 수익률과 거래 수수료, 추가 매수 후 평균 단가를 계산하세요.">
   <meta name="google-adsense-account" content="ca-pub-7445813934260982">
   <title data-i18n="pageTitle">주식 코인 암호화폐 수익률 계산기</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -17,8 +17,7 @@
       <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1 data-i18n="heroTitle">숫자로 확인하는 나의 투자</h1><p data-i18n="heroText">거래 손익부터 추가 매수 후 평균 단가까지 계산해보세요.</p></div>
       <nav class="tabs" role="tablist" aria-label="계산 종류" data-i18n-aria="tabList">
         <button id="tab-profit" role="tab" aria-selected="true" aria-controls="calculator" data-mode="profit" data-i18n="tabProfit">수익률 계산</button>
-        <button id="tab-down" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="down" data-i18n="tabDown">물타기</button>
-        <button id="tab-up" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="up" data-i18n="tabUp">불타기</button>
+        <button id="tab-average" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="average" data-i18n="tabAverage">평균 단가 계산</button>
       </nav>
       <section id="calculator" class="card" role="tabpanel" aria-labelledby="tab-profit">
         <div class="section-heading"><h2 id="form-title">수익률 계산</h2><label class="currency-picker"><span data-i18n="currencyLabel">화폐 단위</span><select id="currency-select" aria-label="화폐 단위" data-i18n-aria="currencyLabel"><option value="KRW">KRW (₩)</option><option value="GBP">GBP (£)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="CNY">CNY (¥)</option></select></label></div>

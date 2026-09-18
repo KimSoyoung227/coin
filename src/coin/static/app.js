@@ -5,14 +5,14 @@ const $ = id => document.getElementById(id);
 const form = $('calculation-form');
 const field = name => form.elements.namedItem(name);
 const tabs = [...document.querySelectorAll('[role=tab]')];
-const modes = ['profit', 'down', 'up'];
+const modes = ['profit', 'average'];
 const names = [...form.querySelectorAll('input,select')].map(el => el.name);
 const currencies = ['KRW', 'GBP', 'USD', 'EUR', 'CNY'];
 let mode = 'profit', drafts = {}, language = 'ko', currency = 'KRW', t = translator(language).t, lastResult = null, sessionStatus = 'session', timer, requestId = 0, controller;
 let session;
 try { session = createSession(window.sessionStorage); }
 catch { session = createSession({getItem: () => null, setItem: () => { throw Error(); }, removeItem() {}}); }
-const descriptions = {profit: 'descProfit', down: 'descDown', up: 'descUp'};
+const descriptions = {profit: 'descProfit', average: 'descAverage'};
 /** 정적 문구와 현재 화면 상태를 선택한 언어로 갱신한다. */
 function applyLanguage(next, save = true) {
   const result = lastResult;
@@ -165,7 +165,11 @@ document.addEventListener('visibilitychange', checkExpiry);
 window.addEventListener('pageshow', checkExpiry);
 window.addEventListener('focus', checkExpiry);
 const saved = session.load();
-if (saved && modes.includes(saved.mode) && saved.drafts && typeof saved.drafts === 'object') {
+if (saved && ['profit', 'average', 'down', 'up'].includes(saved.mode) && saved.drafts && typeof saved.drafts === 'object') {
+  // 이전 물타기·불타기 초안은 새 평균 단가 계산 탭으로 이전한다.
+  if (['down', 'up'].includes(saved.mode)) {
+    saved.drafts.average = saved.drafts[saved.mode]; saved.mode = 'average';
+  }
   drafts = saved.drafts; language = translator(saved.language).lang; t = translator(language).t;
   currency = currencies.includes(saved.currency) ? saved.currency : 'KRW';
   applyLanguage(language, false); applyCurrency(currency, false); selectMode(saved.mode, false);

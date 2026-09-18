@@ -14,6 +14,16 @@ export const messages = {
   }
 };
 
+// 물타기·불타기를 하나의 방향 제한 없는 평균 단가 계산 문구로 통합한다.
+Object.assign(messages.ko, {metaDescription:'주식 코인 암호화폐의 수익률과 거래 수수료, 추가 매수 후 평균 단가를 계산하세요.', tabAverage:'평균 단가 계산', descAverage:'추가 매수할 때의 평균 단가를 계산합니다. 매수금액과 평균 단가는 수수료를 제외합니다.'});
+Object.assign(messages['en-US'], {metaDescription:'Calculate stock and crypto returns, trading fees, and average price after additional purchases.', tabAverage:'Average Price', descAverage:'Calculate the average price when making an additional purchase. Purchase amount and average price exclude fees.'});
+Object.assign(messages.es, {metaDescription:'Calcula rentabilidad, comisiones y precio medio tras compras adicionales.', tabAverage:'Precio medio', descAverage:'Calcula el precio medio al realizar una compra adicional. El importe y el precio medio no incluyen comisiones.'});
+Object.assign(messages.zh, {metaDescription:'计算股票和加密货币收益、交易手续费及追加买入后的平均价格。', tabAverage:'平均单价计算', descAverage:'计算追加买入后的平均单价。买入金额和平均单价不含手续费。'});
+for (const dictionary of Object.values(messages)) {
+  delete dictionary.tabDown; delete dictionary.tabUp;
+  delete dictionary.descDown; delete dictionary.descUp;
+}
+
 /** 지원 언어만 허용하고 번역 키를 반환한다. */
 export function translator(language) {
   // 기존 영국 영어 세션은 동일 문구의 미국 영어로 이전한다.

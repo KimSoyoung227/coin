@@ -1,8 +1,8 @@
 # coin
 
-로그인 없는 반응형 암호화폐 수익률 계산기. 수익률, 물타기, 불타기 계산을 지원합니다.
+로그인 없는 반응형 암호화폐 계산기. 수익률과 추가 매수 후 평균 단가 계산을 지원합니다.
 
-- `src/coin/calculations.py`: 손익, 수익률, 물타기/불타기 평균 단가 계산
+- `src/coin/calculations.py`: 손익, 수익률, 추가 매수 평균 단가 계산
 - `tests/test_calculations.py`: 계산 및 입력 검증 테스트
 - `src/coin/web.py`: Flask 앱 팩토리 및 계산 API
 - `tests/test_web.py`: API 통합 테스트
@@ -38,5 +38,5 @@ macOS AirPlay 서비스와의 포트 충돌을 피하도록 기본 포트를 505
 API는 JSON 객체를 받습니다. `mode`는 `profit`(기본), `down`, `up`입니다.
 공통 입력은 `buy_price`와 `quantity` 또는 `amount` 중 하나입니다.
 수익률은 `sell_price`, 선택 항목 `fee_percent`(기본 0%)를 받습니다.
-물타기/불타기는 `additional_price`와 `additional_quantity` 또는 `additional_amount` 중 하나를 받습니다.
+평균 단가 계산은 `mode=average`, `additional_price`와 `additional_quantity` 또는 `additional_amount` 중 하나를 받습니다.
 성공 응답은 `mode`, `result`이고 입력 오류는 HTTP 400의 `error`입니다.

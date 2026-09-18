@@ -77,16 +77,30 @@ class WebTests(unittest.TestCase):
         self.assertLess(page.index("🇺🇸"), page.index("🇨🇳"))
         self.assertLess(page.index("🇨🇳"), page.index("🇪🇸"))
 
-    def test_average_modes(self):
-        """추가 매수금액과 수량 입력을 모두 지원한다."""
-        for mode, price, expected in (("down", 50, 75), ("up", 150, 125)):
-            with self.subTest(mode=mode):
+    def test_average_tab_replaces_direction_tabs(self):
+        """평균 단가 탭만 제공하고 물타기·불타기 탭은 제거한다."""
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-mode="average"', page)
+        self.assertNotIn('data-mode="down"', page)
+        self.assertNotIn('data-mode="up"', page)
+
+    def test_average_mode(self):
+        """평균 단가 탭은 낮거나 높은 추가 가격과 두 입력 방식을 지원한다."""
+        for price, extra in ((50, {"additional_amount": 100}),
+                             (150, {"additional_quantity": 2})):
+            with self.subTest(price=price):
                 response = self.client.post("/api/calculate", json={
-                    "mode": mode, "buy_price": 100, "quantity": 2,
-                    "additional_price": price, "additional_amount": price * 2
+                    "mode": "average", "buy_price": 100, "quantity": 2,
+                    "additional_price": price, **extra
                 })
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json["result"]["average_price"], expected)
+                self.assertEqual(response.json["result"]["average_price"], (200 + 100) / 4 if price == 50 else 125)
+
+    def test_removed_average_modes_are_rejected(self):
+        """삭제한 물타기·불타기 API 모드는 더 이상 받지 않는다."""
+        for mode in ("down", "up"):
+            response = self.client.post("/api/calculate", json={"mode": mode})
+            self.assertEqual(response.status_code, 400)
 
     def test_bad_inputs(self):
         """누락, 중복, 잘못된 자료형 및 비정상 숫자는 400으로 처리한다."""

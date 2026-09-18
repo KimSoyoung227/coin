@@ -75,15 +75,18 @@ def calculate_average(
     quantity: float,
     additional_price: float,
     additional_quantity: float,
-    mode: str,
+    mode: str = "average",
 ) -> AverageResult:
-    """물타기/불타기 방향을 검증하고 수량 가중 평균 단가를 계산한다."""
+    """추가 매수의 수량 가중 평균 단가를 계산한다.
+
+    이전 호출과의 호환을 위해 down/up 모드일 때만 가격 방향도 검증한다.
+    """
     buy = _number(buy_price, "기존 매수 단가")
     count = _number(quantity, "기존 수량")
     extra = _number(additional_price, "추가 매수 단가")
     extra_count = _number(additional_quantity, "추가 수량")
-    if mode not in ("down", "up"):
-        raise ValueError("물타기 또는 불타기를 선택해주세요.")
+    if mode not in ("average", "down", "up"):
+        raise ValueError("평균 단가 계산 모드를 선택해주세요.")
     if mode == "down" and extra >= buy:
         raise ValueError("물타기의 추가 매수 단가는 기존 단가보다 낮아야 합니다.")
     if mode == "up" and extra <= buy:

@@ -78,13 +78,13 @@ def create_app() -> Flask:
 
     @app.post("/api/calculate")
     def calculate():
-        """수익률/물타기/불타기를 계산하며 입력과 결과를 서버에 보관하지 않는다."""
+        """수익률 또는 추가 매수 평균 단가를 계산하며 결과를 저장하지 않는다."""
         data = request.get_json()
         if not isinstance(data, dict):
             return jsonify(error="JSON 객체를 입력해주세요."), 400
         try:
             mode = data.get("mode", "profit")
-            if mode not in ("profit", "down", "up"):
+            if mode not in ("profit", "average"):
                 raise ValueError("올바른 계산 탭을 선택해주세요.")
             quantity = _quantity(data, "buy_price", "quantity", "amount")
             if mode == "profit":
@@ -96,7 +96,7 @@ def create_app() -> Flask:
                     data, "additional_price", "additional_quantity", "additional_amount"
                 )
                 result = calculate_average(
-                    data["buy_price"], quantity, data["additional_price"], additional_quantity, mode
+                    data["buy_price"], quantity, data["additional_price"], additional_quantity
                 )
         except KeyError:
             return jsonify(error="필수 입력 항목이 누락되었습니다."), 400
@@ -114,4 +114,3 @@ def create_app() -> Flask:
         return app.send_static_file("ads.txt")
 
     return app
-
