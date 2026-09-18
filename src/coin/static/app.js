@@ -8,7 +8,7 @@ const field = name => form.elements.namedItem(name);
 const tabs = [...document.querySelectorAll('[role=tab]')];
 const modes = ['profit', 'average'];
 const names = [...form.querySelectorAll('input,select')].map(el => el.name);
-const currencies = ['KRW', 'GBP', 'USD', 'EUR', 'CNY'];
+const currencies = ['KRW', 'GBP', 'USD', 'EUR', 'CNY', 'JPY'];
 let mode = 'profit', drafts = {}, language = 'ko', currency = 'KRW', t = translator(language).t, lastResult = null, sessionStatus = 'session', timer, requestId = 0, controller;
 let session;
 try { session = createSession(window.sessionStorage); }
@@ -114,7 +114,7 @@ function renderResult(result) {
     const metric = document.createElement('dl'); metric.className = 'metric' + (index < 2 ? ' featured' : '');
     const title = document.createElement('dt'); title.textContent = label;
     const amount = document.createElement('dd');
-    amount.textContent = new Intl.NumberFormat({ko:'ko-KR','en-US':'en-US',es:'es-ES',zh:'zh-CN'}[language], {maximumSignificantDigits: 12}).format(value) + ' ' + unit;
+    amount.textContent = new Intl.NumberFormat({ko:'ko-KR','en-US':'en-US',es:'es-ES',zh:'zh-CN',ja:'ja-JP'}[language], {maximumSignificantDigits: 12}).format(value) + ' ' + unit;
     if (mode === 'profit' && index < 2) amount.className = value > 0 ? 'positive' : value < 0 ? 'negative' : '';
     metric.append(title, amount); body.append(metric);
   });

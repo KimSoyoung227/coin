@@ -11,7 +11,7 @@
   <script nonce="{{ g.csp_nonce }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445813934260982" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header><a href="/" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">주식 코인 암호화폐 수익률 계산기</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">로그인 없이 간편하게</span><div class="languages" role="group" aria-label="언어 선택" data-i18n-aria="languageSelector"><button type="button" data-lang="ko" aria-label="한국어" title="한국어" aria-pressed="true">🇰🇷</button><button type="button" data-lang="en-US" aria-label="American English" title="American English">🇺🇸</button><button type="button" data-lang="zh" aria-label="简体中文" title="简体中文">🇨🇳</button><button type="button" data-lang="es" aria-label="Español" title="Español">🇪🇸</button></div></div></header>
+  <header><a href="/" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">주식 코인 암호화폐 수익률 계산기</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">로그인 없이 간편하게</span><div class="languages" role="group" aria-label="언어 선택" data-i18n-aria="languageSelector"><button type="button" data-lang="ko" aria-label="한국어" title="한국어" aria-pressed="true">🇰🇷</button><button type="button" data-lang="en-US" aria-label="American English" title="American English">🇺🇸</button><button type="button" data-lang="zh" aria-label="简体中文" title="简体中文">🇨🇳</button><button type="button" data-lang="ja" aria-label="日本語" title="日本語">🇯🇵</button><button type="button" data-lang="es" aria-label="Español" title="Español">🇪🇸</button></div></div></header>
   <div class="layout">
     <main>
       <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1 data-i18n="heroTitle">숫자로 확인하는 나의 투자</h1><p data-i18n="heroText">거래 손익부터 추가 매수 후 평균 단가까지 계산해보세요.</p></div>
@@ -20,7 +20,7 @@
         <button id="tab-average" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="average" data-i18n="tabAverage">평균 단가 계산</button>
       </nav>
       <section id="calculator" class="card" role="tabpanel" aria-labelledby="tab-profit">
-        <div class="section-heading"><h2 id="form-title">수익률 계산</h2><label class="currency-picker"><span data-i18n="currencyLabel">화폐 단위</span><select id="currency-select" aria-label="화폐 단위" data-i18n-aria="currencyLabel"><option value="KRW">KRW (₩)</option><option value="GBP">GBP (£)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="CNY">CNY (¥)</option></select></label></div>
+        <div class="section-heading"><h2 id="form-title">수익률 계산</h2><label class="currency-picker"><span data-i18n="currencyLabel">화폐 단위</span><select id="currency-select" aria-label="화폐 단위" data-i18n-aria="currencyLabel"><option value="KRW">KRW (₩)</option><option value="GBP">GBP (£)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="CNY">CNY (¥)</option><option value="JPY">JPY (¥)</option></select></label></div>
         <p id="explanation" class="explanation">매수·매도 단가와 보유 수량 또는 투자금액을 입력하세요. 수수료율은 매수와 매도에 각각 적용됩니다.</p>
         <form id="calculation-form">
           <div class="fields">
@@ -48,7 +48,7 @@
     </main>
     <aside class="market-card" aria-labelledby="market-title">
       <div class="market-heading"><h2 id="market-title" data-i18n="marketTitle">환율·시세</h2><button type="button" id="market-refresh" data-i18n-aria="marketRefresh" aria-label="새로고침">↻</button></div>
-      <label class="market-base"><span data-i18n="rateBase">기준 통화</span><select id="market-base-currency" aria-label="기준 통화" data-i18n-aria="rateBase"><option value="KRW">KRW</option><option value="USD">USD</option><option value="CNY">CNY</option><option value="EUR">EUR</option></select></label>
+      <label class="market-base"><span data-i18n="rateBase">기준 통화</span><select id="market-base-currency" aria-label="기준 통화" data-i18n-aria="rateBase"><option value="KRW">KRW</option><option value="USD">USD</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="EUR">EUR</option></select></label>
       <div class="market-scroll"><table><thead><tr><th data-i18n="marketAsset">자산</th><th id="market-price-heading" data-i18n="marketPrice">가격</th></tr></thead><tbody id="market-body"><tr><td colspan="2" data-i18n="marketLoading">시세를 불러오는 중…</td></tr></tbody></table></div>
       <div id="market-times" class="market-times" aria-live="polite"></div>
       <p id="market-error" class="market-error" role="status" hidden></p>

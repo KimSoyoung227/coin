@@ -60,10 +60,10 @@ class WebTests(unittest.TestCase):
             self.assertNotIn(reserved, parser.identifiers)
 
     def test_currency_selector(self):
-        """5개 국가의 통화 선택값과 입력 단위 연결을 제공한다."""
+        """지원하는 6개 통화 선택값과 입력 단위 연결을 제공한다."""
         page = self.client.get("/").get_data(as_text=True)
         self.assertIn('id="currency-select"', page)
-        for currency in ("KRW", "GBP", "USD", "EUR", "CNY"):
+        for currency in ("KRW", "GBP", "USD", "EUR", "CNY", "JPY"):
             self.assertIn(f'value="{currency}"', page)
         self.assertEqual(page.count("data-currency-unit"), 3)
 
@@ -75,7 +75,15 @@ class WebTests(unittest.TestCase):
         self.assertNotIn("🇬🇧", page)
         self.assertLess(page.index("🇰🇷"), page.index("🇺🇸"))
         self.assertLess(page.index("🇺🇸"), page.index("🇨🇳"))
-        self.assertLess(page.index("🇨🇳"), page.index("🇪🇸"))
+        self.assertLess(page.index("🇨🇳"), page.index("🇯🇵"))
+        self.assertLess(page.index("🇯🇵"), page.index("🇪🇸"))
+
+    def test_japanese_language_and_currency(self):
+        """일본어 국기와 JPY 계산·시세 기준 통화를 제공한다."""
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-lang="ja"', page)
+        self.assertIn("🇯🇵", page)
+        self.assertGreaterEqual(page.count('value="JPY"'), 2)
 
     def test_average_tab_replaces_direction_tabs(self):
         """평균 단가 탭만 제공하고 물타기·불타기 탭은 제거한다."""
@@ -143,7 +151,7 @@ class WebTests(unittest.TestCase):
         self.assertIn("Gold API", page)
         self.assertIn('id="market-base-currency"', page)
         self.assertNotIn('id="rate-to"', page)
-        for currency in ("KRW", "USD", "CNY", "EUR"):
+        for currency in ("KRW", "USD", "CNY", "JPY", "EUR"):
             self.assertGreaterEqual(page.count(f'value="{currency}"'), 2)
 
 

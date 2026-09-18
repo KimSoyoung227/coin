@@ -2,7 +2,7 @@
 let latest = null;
 let loading = false;
 const $ = id => document.getElementById(id);
-const locale = language => ({ko:'ko-KR','en-US':'en-US',es:'es-ES',zh:'zh-CN'}[language] || 'ko-KR');
+const locale = language => ({ko:'ko-KR','en-US':'en-US',es:'es-ES',zh:'zh-CN',ja:'ja-JP'}[language] || 'ko-KR');
 const rows = [
   ['currencies','KRW','rateKRW','currency'], ['currencies','USD','rateUSD','currency'],
   ['currencies','CNY','rateCNY','currency'], ['currencies','JPY','rateJPY','currency'],
