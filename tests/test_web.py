@@ -46,7 +46,7 @@ class WebTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('암호화폐 수익률 계산기', response.get_data(as_text=True))
         self.assertIn('role="tablist"', response.get_data(as_text=True))
-        for asset in ("app.js", "session.js", "style.css"):
+        for asset in ("app.js", "i18n.js", "session.js", "style.css"):
             with self.subTest(asset=asset):
                 response = self.client.get("/static/" + asset)
                 self.assertEqual(response.status_code, 200)
@@ -58,6 +58,24 @@ class WebTests(unittest.TestCase):
         parser.feed(self.client.get("/").get_data(as_text=True))
         for reserved in ("reset", "submit", "elements", "requestSubmit", "checkValidity"):
             self.assertNotIn(reserved, parser.identifiers)
+
+    def test_currency_selector(self):
+        """5개 국가의 통화 선택값과 입력 단위 연결을 제공한다."""
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="currency-select"', page)
+        for currency in ("KRW", "GBP", "USD", "EUR", "CNY"):
+            self.assertIn(f'value="{currency}"', page)
+        self.assertEqual(page.count("data-currency-unit"), 3)
+
+    def test_language_selector_includes_united_states(self):
+        """요청한 국가 순서로 표시하고 문구가 같은 영국은 제외한다."""
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-lang="en-US"', page)
+        self.assertIn("🇺🇸", page)
+        self.assertNotIn("🇬🇧", page)
+        self.assertLess(page.index("🇰🇷"), page.index("🇺🇸"))
+        self.assertLess(page.index("🇺🇸"), page.index("🇨🇳"))
+        self.assertLess(page.index("🇨🇳"), page.index("🇪🇸"))
 
     def test_average_modes(self):
         """추가 매수금액과 수량 입력을 모두 지원한다."""
