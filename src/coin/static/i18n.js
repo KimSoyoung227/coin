@@ -1,5 +1,5 @@
 /** 서버와 동일한 JSON 번역 사전을 페이지에서 읽어 동적 UI에 사용한다. */
-export const messages = JSON.parse(document.getElementById('translations').textContent);
+export const messages = JSON.parse(document.getElementById('translations').dataset.messages);
 
 /** 지원 언어만 허용하고 번역 키를 반환한다. */
 export function translator(language) {

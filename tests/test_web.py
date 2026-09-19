@@ -1,6 +1,7 @@
 """Flask 테스트 클라이언트로 계산 API와 HTTP 입력 경계를 검증한다."""
 
 import json
+import re
 import unittest
 from html.parser import HTMLParser
 
@@ -46,11 +47,31 @@ class WebTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('암호화폐 수익률 계산기', response.get_data(as_text=True))
         self.assertIn('role="tablist"', response.get_data(as_text=True))
-        for asset in ("app.js", "i18n.js", "rates.js", "session.js", "style.css"):
+        for asset in ("app.js", "i18n.js", "rates.js", "session.js", "formatting.js", "style.css"):
             with self.subTest(asset=asset):
                 response = self.client.get("/static/" + asset)
                 self.assertEqual(response.status_code, 200)
                 response.close()
+
+    def test_security_headers_and_public_ads(self):
+        """Blueprint 분리 후에도 모든 응답에 보안 헤더와 요청별 nonce가 유지된다."""
+        nonces = []
+        for path in ("/ko/", "/missing/", "/ads.txt"):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.headers["Cache-Control"], "no-store")
+                self.assertEqual(response.headers["X-Content-Type-Options"], "nosniff")
+                self.assertEqual(response.headers["Referrer-Policy"], "no-referrer")
+                policy = response.headers["Content-Security-Policy"]
+                nonce = re.search(r"'nonce-([^']+)'", policy).group(1)
+                nonces.append(nonce)
+                if path == "/ko/":
+                    self.assertIn(f'nonce="{nonce}"', response.get_data(as_text=True))
+                if path == "/ads.txt":
+                    self.assertEqual(response.status_code, 200)
+                    self.assertIn("google.com", response.get_data(as_text=True))
+                response.close()
+        self.assertEqual(len(set(nonces)), 3)
 
     def test_form_controls_do_not_shadow_methods(self):
         """탭 전환에 쓰는 form.reset 등이 컨트롤에 가려지는 회귀를 방지한다."""

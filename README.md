@@ -4,19 +4,24 @@
 
 - `src/coin/calculations.py`: 손익, 수익률, 추가 매수 평균 단가 계산
 - `tests/test_calculations.py`: 계산 및 입력 검증 테스트
-- `src/coin/web.py`: 언어별 페이지·SEO 경로, Flask 앱 팩토리 및 계산 API
+- `src/coin/web.py`: Flask 앱 팩토리와 Blueprint 등록
+- `src/coin/pages.py`: 언어별 페이지·SEO·공개 문서 경로
+- `src/coin/api.py`: 계산 입력 검증과 계산·시세 JSON API
+- `src/coin/security.py`: 요청별 CSP nonce·공통 응답 헤더·HTTP 오류 처리
 - `src/coin/localization.py`: 선호 언어 선택 및 서버 번역 컨텍스트
 - `src/coin/translations.json`: 서버·브라우저 공통 5개 언어 사전
 - `src/coin/templates/sitemap.xml`: 언어별 URL 및 대체 언어 사이트맵
 - `tests/test_localization.py`, `tests/test_seo.py`: 언어 선택·서버 렌더링·SEO 검증
-- `tests/test_page_language.mjs`: URL 언어 우선 적용 및 세션 입력 복원 검증
+- `tests/test_page_language.mjs`: URL 언어·세션·매도 버튼·입력 저장·요청 본문 검증
+- `tests/test_rates.mjs`: 시세 표시·기준 통화 환산·캐시 안내·오류 검증
 - `tests/test_web.py`: API 통합 테스트
 - `pyproject.toml`: 패키지 구조 및 필수 의존성
 - `requirements.txt`: 검증한 의존성 버전
 - `src/coin/__main__.py`: 기본 포트 5050의 로컬 실행 진입점
 - `src/coin/templates/index.html`: 원페이지 화면
 - `src/coin/static/style.css`: 반응형 레이아웃 및 화면 여백
-- `src/coin/static/app.js`: 탭, 입력 및 계산 결과 표시
+- `src/coin/static/app.js`: 탭·입력·계산 요청·세션 복원
+- `src/coin/static/formatting.js`: 계산기·시세 공통 표시 로케일
 - `src/coin/static/session.js`: 브라우저 세션 보관 및 1시간 만료
 - `src/coin/market.py`: 환율·금속·비트코인 조회, 단위 환산 및 메모리 캐시
 - `src/coin/static/rates.js`: 반응형 시세 표 표시 및 1분 갱신
@@ -54,4 +59,4 @@ macOS AirPlay 서비스와의 포트 충돌을 피하도록 기본 포트를 505
 
 국기 아이콘은 언어별 URL 링크이며 계산 입력은 기존 세션에서 복원합니다. 페이지 제목, 메타 설명, 제목·설명·레이블은 서버에서 번역합니다. canonical과 hreflang(5개 언어 및 x-default), `/sitemap.xml`, `/robots.txt`는 공개 도메인 `https://coin.sykim.dev`를 기준으로 생성합니다. 도메인 변경 시 `src/coin/localization.py`의 `SITE_URL`을 변경하세요. 새 DB와 패키지는 필요하지 않습니다.
 
-프런트엔드 검증: `node tests/test_i18n.mjs`, `node tests/test_session.mjs`, `node tests/test_page_language.mjs`.
+프런트엔드 검증: `node tests/test_i18n.mjs`, `node tests/test_session.mjs`, `node tests/test_page_language.mjs`, `node tests/test_rates.mjs`.

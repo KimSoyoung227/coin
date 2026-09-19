@@ -1,7 +1,7 @@
 /** 번역 사전의 지원 언어와 키 구성이 동일한지 검증한다. */
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-globalThis.document = {getElementById: () => ({textContent: readFileSync(new URL('../src/coin/translations.json', import.meta.url), 'utf8')})};
+globalThis.document = {getElementById: () => ({dataset: {messages: readFileSync(new URL('../src/coin/translations.json', import.meta.url), 'utf8')}})};
 const {messages, translator} = await import('../src/coin/static/i18n.js');
 delete globalThis.document;
 

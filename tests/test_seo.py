@@ -83,7 +83,7 @@ class SeoTests(unittest.TestCase):
                 self.assertEqual([a["hreflang"] for a in flags if a.get("aria-current") == "page"], [language])
                 for link in flags:
                     self.assertEqual(link["href"], f'/{link["hreflang"]}/')
-                embedded = next(e["text"] for e in elements if e["attrs"].get("id") == "translations")
+                embedded = next(e["attrs"]["data-messages"] for e in elements if e["attrs"].get("id") == "translations")
                 self.assertEqual(json.loads(embedded), MESSAGES)
 
     def test_sitemap_and_robots(self):

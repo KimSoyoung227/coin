@@ -9,13 +9,13 @@
   <link rel="canonical" href="{{ canonical_url }}">
   {% for code, name, flag in language_links %}<link rel="alternate" hreflang="{{ code }}" href="{{ site_url }}/{{ code }}/">
   {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site_url }}/">
-  <script id="translations" type="application/json" nonce="{{ g.csp_nonce }}">{{ translations | tojson }}</script>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script type="module" nonce="{{ g.csp_nonce }}"  src="{{ url_for('static', filename='app.js') }}"></script>
   <script nonce="{{ g.csp_nonce }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445813934260982" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header><a href="{{ url_for('localized_index', language=page_language) }}" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">{{ t('pageTitle') }}</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">{{ t('headerNote') }}</span><div class="languages" role="group" aria-label="{{ t('languageSelector') }}" data-i18n-aria="languageSelector">{% for code, name, flag in language_links %}<a href="{{ url_for('localized_index', language=code) }}" hreflang="{{ code }}" lang="{{ code }}" data-lang="{{ 'en-US' if code == 'en' else code }}" aria-label="{{ name }}" title="{{ name }}"{% if code == page_language %} aria-current="page"{% endif %}>{{ flag }}</a>{% endfor %}</div></div></header>
+  <div id="translations" hidden data-messages="{{ translations | tojson | forceescape }}"></div>
+  <header><a href="{{ url_for('pages.localized_index', language=page_language) }}" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">{{ t('pageTitle') }}</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">{{ t('headerNote') }}</span><div class="languages" role="group" aria-label="{{ t('languageSelector') }}" data-i18n-aria="languageSelector">{% for code, name, flag in language_links %}<a href="{{ url_for('pages.localized_index', language=code) }}" hreflang="{{ code }}" lang="{{ code }}" data-lang="{{ 'en-US' if code == 'en' else code }}" aria-label="{{ name }}" title="{{ name }}"{% if code == page_language %} aria-current="page"{% endif %}>{{ flag }}</a>{% endfor %}</div></div></header>
   <div class="layout">
     <main>
       <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1 data-i18n="heroTitle">{{ t('heroTitle') }}</h1><p data-i18n="heroText">{{ t('heroText') }}</p></div>

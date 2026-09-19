@@ -54,6 +54,23 @@ class MarketTests(unittest.TestCase):
         self.now = 300; self.service.snapshot(); self.assertEqual(len(self.calls), 10)
         self.now = 3600; self.service.snapshot(); self.assertEqual(len(self.calls), 15)
 
+    def test_stale_cache_after_refresh_failure(self):
+        """갱신 실패 시 기존 완료 시각과 값을 유지하며 이전 시세로 표시한다."""
+        original = self.service.bitcoin()
+        self.now = 60
+
+        def fail_request(request, timeout):
+            """캐시 만료 후 공급자 장애를 재현한다."""
+            raise OSError("offline")
+
+        self.service._opener = fail_request
+        cached = self.service.bitcoin()
+        self.assertEqual(cached["items"], original["items"])
+        self.assertEqual(cached["completed_at"], original["completed_at"])
+        self.assertEqual(cached["source_updated_at"], original["source_updated_at"])
+        self.assertTrue(cached["stale"])
+        self.assertFalse(original["stale"])
+
     def test_partial_failure(self):
         """일부 공급자가 실패해도 성공한 그룹은 반환한다."""
         def fail_exchange(request, timeout):
