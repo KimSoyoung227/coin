@@ -4,7 +4,12 @@
 
 - `src/coin/calculations.py`: 손익, 수익률, 추가 매수 평균 단가 계산
 - `tests/test_calculations.py`: 계산 및 입력 검증 테스트
-- `src/coin/web.py`: Flask 앱 팩토리 및 계산 API
+- `src/coin/web.py`: 언어별 페이지·SEO 경로, Flask 앱 팩토리 및 계산 API
+- `src/coin/localization.py`: 선호 언어 선택 및 서버 번역 컨텍스트
+- `src/coin/translations.json`: 서버·브라우저 공통 5개 언어 사전
+- `src/coin/templates/sitemap.xml`: 언어별 URL 및 대체 언어 사이트맵
+- `tests/test_localization.py`, `tests/test_seo.py`: 언어 선택·서버 렌더링·SEO 검증
+- `tests/test_page_language.mjs`: URL 언어 우선 적용 및 세션 입력 복원 검증
 - `tests/test_web.py`: API 통합 테스트
 - `pyproject.toml`: 패키지 구조 및 필수 의존성
 - `requirements.txt`: 검증한 의존성 버전
@@ -44,3 +49,9 @@ macOS AirPlay 서비스와의 포트 충돌을 피하도록 기본 포트를 505
 수익률은 `sell_price`, 선택 항목 `fee_percent`(기본 0%)를 받습니다.
 평균 단가 계산은 `mode=average`, `additional_price`와 `additional_quantity` 또는 `additional_amount` 중 하나를 받습니다.
 성공 응답은 `mode`, `result`이고 입력 오류는 HTTP 400의 `error`입니다.
+
+언어별 페이지는 `/ko/`, `/en/`, `/ja/`, `/zh/`, `/es/`로 제공합니다. `/`는 브라우저의 `Accept-Language` 우선순위에 따라 임시 이동(302)하며 지원 언어가 없으면 `/en/`으로 이동합니다. IP 기반 국가 조회는 하지 않습니다. 직접 방문한 언어 URL은 브라우저 언어와 세션의 이전 언어보다 우선합니다.
+
+국기 아이콘은 언어별 URL 링크이며 계산 입력은 기존 세션에서 복원합니다. 페이지 제목, 메타 설명, 제목·설명·레이블은 서버에서 번역합니다. canonical과 hreflang(5개 언어 및 x-default), `/sitemap.xml`, `/robots.txt`는 공개 도메인 `https://coin.sykim.dev`를 기준으로 생성합니다. 도메인 변경 시 `src/coin/localization.py`의 `SITE_URL`을 변경하세요. 새 DB와 패키지는 필요하지 않습니다.
+
+프런트엔드 검증: `node tests/test_i18n.mjs`, `node tests/test_session.mjs`, `node tests/test_page_language.mjs`.

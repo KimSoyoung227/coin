@@ -4,11 +4,12 @@ from dataclasses import asdict
 
 import secrets
 
-from flask import Flask, g, jsonify, request, render_template
+from flask import Flask, Response, abort, g, jsonify, redirect, request, render_template, url_for
 from werkzeug.exceptions import HTTPException
 
 from coin.calculations import calculate_average, calculate_profit, quantity_from_amount
 from coin.market import MarketService
+from coin.localization import LANGUAGES, SITE_URL, page_context, preferred_language
 
 
 def _quantity(data: dict, price_key: str, quantity_key: str, amount_key: str) -> float:
@@ -32,8 +33,29 @@ def create_app() -> Flask:
 
     @app.get("/")
     def index():
-        """로그인 없이 사용하는 원페이지 계산 화면을 제공한다."""
-        return render_template("index.html")
+        """브라우저 선호 언어에 따라 언어별 페이지로 임시 이동한다."""
+        response = redirect(url_for("localized_index", language=preferred_language(request.accept_languages)), code=302)
+        response.vary.add("Accept-Language")
+        return response
+
+    @app.get("/<language>/")
+    def localized_index(language):
+        """명시된 URL의 언어로 검색 가능한 계산기 HTML을 렌더링한다."""
+        if language not in LANGUAGES:
+            abort(404)
+        response = app.make_response(render_template("index.html", **page_context(language)))
+        response.headers["Content-Language"] = language
+        return response
+
+    @app.get("/sitemap.xml")
+    def sitemap():
+        """각 언어 URL과 상호 대체 언어 링크를 XML 사이트맵으로 제공한다."""
+        return Response(render_template("sitemap.xml", languages=LANGUAGES, site_url=SITE_URL), mimetype="application/xml")
+
+    @app.get("/robots.txt")
+    def robots():
+        """검색 로봇에 공개 페이지와 사이트맵 위치를 안내한다."""
+        return Response(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", mimetype="text/plain")
 
     @app.after_request
     def response_headers(response):

@@ -1,34 +1,38 @@
 <!doctype html>
-<html lang="ko">
+<html lang="{{ page_language }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" data-i18n-content="metaDescription" content="주식 코인 암호화폐의 수익률과 거래 수수료, 추가 매수 후 평균 단가를 계산하세요.">
+  <meta name="description" data-i18n-content="metaDescription" content="{{ t('metaDescription') }}">
   <meta name="google-adsense-account" content="ca-pub-7445813934260982">
-  <title data-i18n="pageTitle">주식 코인 암호화폐 수익률 계산기</title>
+  <title data-i18n="pageTitle">{{ t('pageTitle') }}</title>
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% for code, name, flag in language_links %}<link rel="alternate" hreflang="{{ code }}" href="{{ site_url }}/{{ code }}/">
+  {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site_url }}/">
+  <script id="translations" type="application/json" nonce="{{ g.csp_nonce }}">{{ translations | tojson }}</script>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script type="module" nonce="{{ g.csp_nonce }}"  src="{{ url_for('static', filename='app.js') }}"></script>
   <script nonce="{{ g.csp_nonce }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7445813934260982" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header><a href="/" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">주식 코인 암호화폐 수익률 계산기</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">로그인 없이 간편하게</span><div class="languages" role="group" aria-label="언어 선택" data-i18n-aria="languageSelector"><button type="button" data-lang="ko" aria-label="한국어" title="한국어" aria-pressed="true">🇰🇷</button><button type="button" data-lang="en-US" aria-label="American English" title="American English">🇺🇸</button><button type="button" data-lang="zh" aria-label="简体中文" title="简体中文">🇨🇳</button><button type="button" data-lang="ja" aria-label="日本語" title="日本語">🇯🇵</button><button type="button" data-lang="es" aria-label="Español" title="Español">🇪🇸</button></div></div></header>
+  <header><a href="{{ url_for('localized_index', language=page_language) }}" class="brand"><span class="brand-mark" aria-hidden="true">%</span><span data-i18n="pageTitle">{{ t('pageTitle') }}</span></a><div class="header-tools"><span class="header-note" data-i18n="headerNote">{{ t('headerNote') }}</span><div class="languages" role="group" aria-label="{{ t('languageSelector') }}" data-i18n-aria="languageSelector">{% for code, name, flag in language_links %}<a href="{{ url_for('localized_index', language=code) }}" hreflang="{{ code }}" lang="{{ code }}" data-lang="{{ 'en-US' if code == 'en' else code }}" aria-label="{{ name }}" title="{{ name }}"{% if code == page_language %} aria-current="page"{% endif %}>{{ flag }}</a>{% endfor %}</div></div></header>
   <div class="layout">
     <main>
-      <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1 data-i18n="heroTitle">숫자로 확인하는 나의 투자</h1><p data-i18n="heroText">거래 손익부터 추가 매수 후 평균 단가까지 계산해보세요.</p></div>
-      <nav class="tabs" role="tablist" aria-label="계산 종류" data-i18n-aria="tabList">
-        <button id="tab-profit" role="tab" aria-selected="true" aria-controls="calculator" data-mode="profit" data-i18n="tabProfit">수익률 계산</button>
-        <button id="tab-average" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="average" data-i18n="tabAverage">평균 단가 계산</button>
+      <div class="intro"><p class="eyebrow">COIN CALCULATOR</p><h1 data-i18n="heroTitle">{{ t('heroTitle') }}</h1><p data-i18n="heroText">{{ t('heroText') }}</p></div>
+      <nav class="tabs" role="tablist" aria-label="{{ t('tabList') }}" data-i18n-aria="tabList">
+        <button id="tab-profit" role="tab" aria-selected="true" aria-controls="calculator" data-mode="profit" data-i18n="tabProfit">{{ t('tabProfit') }}</button>
+        <button id="tab-average" role="tab" aria-selected="false" aria-controls="calculator" tabindex="-1" data-mode="average" data-i18n="tabAverage">{{ t('tabAverage') }}</button>
       </nav>
       <section id="calculator" class="card" role="tabpanel" aria-labelledby="tab-profit">
-        <div class="section-heading"><h2 id="form-title">수익률 계산</h2><label class="currency-picker"><span data-i18n="currencyLabel">화폐 단위</span><select id="currency-select" aria-label="화폐 단위" data-i18n-aria="currencyLabel"><option value="KRW">KRW (₩)</option><option value="GBP">GBP (£)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="CNY">CNY (¥)</option><option value="JPY">JPY (¥)</option></select></label></div>
-        <p id="explanation" class="explanation">매수·매도 단가와 보유 수량 또는 투자금액을 입력하세요. 수수료율은 매수와 매도에 각각 적용됩니다.</p>
+        <div class="section-heading"><h2 id="form-title">{{ t('tabProfit') }}</h2><label class="currency-picker"><span data-i18n="currencyLabel">{{ t('currencyLabel') }}</span><select id="currency-select" aria-label="{{ t('currencyLabel') }}" data-i18n-aria="currencyLabel"><option value="KRW">KRW (₩)</option><option value="GBP">GBP (£)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="CNY">CNY (¥)</option><option value="JPY">JPY (¥)</option></select></label></div>
+        <p id="explanation" class="explanation">{{ t('descProfit') }}</p>
         <form id="calculation-form">
           <div class="fields">
-            <label class="buy-field"><span class="buy-heading" data-i18n="buyPrice">매수 단가</span> <span class="input-wrap"><input name="buy_price" type="number" step="any" min="0" required placeholder="100000"><span data-currency-unit>KRW</span></span></label>
+            <label class="buy-field"><span class="buy-heading" data-i18n="buyPrice">{{ t('buyPrice') }}</span> <span class="input-wrap"><input name="buy_price" type="number" step="any" min="0" required placeholder="100000"><span data-currency-unit>KRW</span></span></label>
             <div id="sell-field" class="sell-field">
               <div class="sell-heading">
-                <label for="sell-price" data-i18n="sellPrice">매도 단가</label>
-                <div class="sell-presets" role="group" data-i18n-aria="sellPrice" aria-label="매도 단가">
+                <label for="sell-price" data-i18n="sellPrice">{{ t('sellPrice') }}</label>
+                <div class="sell-presets" role="group" data-i18n-aria="sellPrice" aria-label="{{ t('sellPrice') }}">
                   <button type="button" data-sell-percent="5">+5%</button>
                   <button type="button" data-sell-percent="10">+10%</button>
                   <button type="button" data-sell-percent="20">20%</button>
@@ -36,35 +40,35 @@
               </div>
               <span class="input-wrap"><input id="sell-price" name="sell_price" type="number" step="any" min="0" required placeholder="120000"><span data-currency-unit>KRW</span></span>
             </div>
-            <label><span data-i18n="holdingMethod">보유분 입력 방식</span><select name="holding_unit"><option value="quantity" data-i18n="byQuantity">수량으로 입력</option><option value="amount" data-i18n="byAmount">투자금액으로 입력</option></select></label>
-            <label><span id="holding-label">보유 수량</span><span class="input-wrap"><input name="holding_value" type="number" step="any" min="0" required placeholder="예: 0.5"><span id="holding-suffix">개</span></span></label>
-            <label id="fee-field"><span data-i18n="feeRate">수수료율</span> <span class="input-wrap"><input name="fee_percent" type="number" step="any" min="0" max="100" value="0" required><span>%</span></span><small data-i18n="feeHelp">매수·매도 각각 적용 · 기본 0%</small></label>
+            <label><span data-i18n="holdingMethod">{{ t('holdingMethod') }}</span><select name="holding_unit"><option value="quantity" data-i18n="byQuantity">{{ t('byQuantity') }}</option><option value="amount" data-i18n="byAmount">{{ t('byAmount') }}</option></select></label>
+            <label><span id="holding-label">{{ t('holdingQuantity') }}</span><span class="input-wrap"><input name="holding_value" type="number" step="any" min="0" required placeholder="0.5"><span id="holding-suffix">{{ t('item') }}</span></span></label>
+            <label id="fee-field"><span data-i18n="feeRate">{{ t('feeRate') }}</span> <span class="input-wrap"><input name="fee_percent" type="number" step="any" min="0" max="100" value="0" required><span>%</span></span><small data-i18n="feeHelp">{{ t('feeHelp') }}</small></label>
           </div>
           <fieldset id="additional-fields" hidden disabled>
-            <legend data-i18n="additionalBuy">추가 매수</legend>
+            <legend data-i18n="additionalBuy">{{ t('additionalBuy') }}</legend>
             <div class="fields">
-              <label><span data-i18n="additionalPrice">추가 매수 단가</span><span class="input-wrap"><input name="additional_price" type="number" step="any" min="0" required><span data-currency-unit>KRW</span></span></label>
-              <label><span data-i18n="additionalMethod">추가분 입력 방식</span><select name="additional_unit"><option value="quantity" data-i18n="byQuantity">수량으로 입력</option><option value="amount" data-i18n="byBuyAmount">매수금액으로 입력</option></select></label>
-              <label><span id="additional-label">추가 수량</span><span class="input-wrap"><input name="additional_value" type="number" step="any" min="0" required placeholder="추가로 구매할 수량"><span id="additional-suffix">개</span></span></label>
+              <label><span data-i18n="additionalPrice">{{ t('additionalPrice') }}</span><span class="input-wrap"><input name="additional_price" type="number" step="any" min="0" required><span data-currency-unit>KRW</span></span></label>
+              <label><span data-i18n="additionalMethod">{{ t('additionalMethod') }}</span><select name="additional_unit"><option value="quantity" data-i18n="byQuantity">{{ t('byQuantity') }}</option><option value="amount" data-i18n="byBuyAmount">{{ t('byBuyAmount') }}</option></select></label>
+              <label><span id="additional-label">{{ t('additionalQuantity') }}</span><span class="input-wrap"><input name="additional_value" type="number" step="any" min="0" required placeholder="0.5"><span id="additional-suffix">{{ t('item') }}</span></span></label>
             </div>
           </fieldset>
           <p id="error" class="error" role="alert" hidden></p>
-          <div class="actions"><button type="submit" class="primary"><span data-i18n="calculate">확인 · 계산하기</span> <span aria-hidden="true">→</span></button><button type="button" id="clear-inputs" class="secondary" data-i18n="reset">전체 초기화</button></div>
+          <div class="actions"><button type="submit" class="primary"><span data-i18n="calculate">{{ t('calculate') }}</span> <span aria-hidden="true">→</span></button><button type="button" id="clear-inputs" class="secondary" data-i18n="reset">{{ t('reset') }}</button></div>
         </form>
       </section>
-      <section class="results" aria-live="polite" aria-atomic="true"><div class="section-heading"><h2 data-i18n="results">계산 결과</h2><span id="result-caption">입력 후 확인을 눌러주세요</span></div><div id="result-body" class="result-empty">예상 손익과 수익률이 여기에 표시됩니다.</div></section>
-      <p class="session-note" id="session-note" role="status">입력값은 이 탭의 브라우저 세션에 보관되며, 최초 저장 후 1시간이 지나면 삭제됩니다.</p>
-      <noscript data-i18n="noscript">계산기 사용과 입력값 저장을 위해 JavaScript를 활성화해주세요.</noscript>
+      <section class="results" aria-live="polite" aria-atomic="true"><div class="section-heading"><h2 data-i18n="results">{{ t('results') }}</h2><span id="result-caption">{{ t('prompt') }}</span></div><div id="result-body" class="result-empty">{{ t('emptyProfit') }}</div></section>
+      <p class="session-note" id="session-note" role="status">{{ t('session') }}</p>
+      <noscript data-i18n="noscript">{{ t('noscript') }}</noscript>
     </main>
     <aside class="market-card" aria-labelledby="market-title">
-      <div class="market-heading"><h2 id="market-title" data-i18n="marketTitle">환율·시세</h2><button type="button" id="market-refresh" data-i18n-aria="marketRefresh" aria-label="새로고침">↻</button></div>
-      <label class="market-base"><span data-i18n="rateBase">기준 통화</span><select id="market-base-currency" aria-label="기준 통화" data-i18n-aria="rateBase"><option value="KRW">KRW</option><option value="USD">USD</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="EUR">EUR</option></select></label>
-      <div class="market-scroll"><table><thead><tr><th data-i18n="marketAsset">자산</th><th id="market-price-heading" data-i18n="marketPrice">가격</th></tr></thead><tbody id="market-body"><tr><td colspan="2" data-i18n="marketLoading">시세를 불러오는 중…</td></tr></tbody></table></div>
+      <div class="market-heading"><h2 id="market-title" data-i18n="marketTitle">{{ t('marketTitle') }}</h2><button type="button" id="market-refresh" data-i18n-aria="marketRefresh" aria-label="{{ t('marketRefresh') }}">↻</button></div>
+      <label class="market-base"><span data-i18n="rateBase">{{ t('rateBase') }}</span><select id="market-base-currency" aria-label="{{ t('rateBase') }}" data-i18n-aria="rateBase"><option value="KRW">KRW</option><option value="USD">USD</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="EUR">EUR</option></select></label>
+      <div class="market-scroll"><table><thead><tr><th data-i18n="marketAsset">{{ t('marketAsset') }}</th><th id="market-price-heading" data-i18n="marketPrice">{{ t('marketPrice') }}</th></tr></thead><tbody id="market-body"><tr><td colspan="2" data-i18n="marketLoading">{{ t('marketLoading') }}</td></tr></tbody></table></div>
       <div id="market-times" class="market-times" aria-live="polite"></div>
       <p id="market-error" class="market-error" role="status" hidden></p>
-      <p class="market-sources"><span data-i18n="marketSources">출처</span>: <a href="https://www.exchangerate.fun/" target="_blank" rel="noopener noreferrer">ExchangeRate.fun</a> · <a href="https://gold-api.com/" target="_blank" rel="noopener noreferrer">Gold API</a></p>
+      <p class="market-sources"><span data-i18n="marketSources">{{ t('marketSources') }}</span>: <a href="https://www.exchangerate.fun/" target="_blank" rel="noopener noreferrer">ExchangeRate.fun</a> · <a href="https://gold-api.com/" target="_blank" rel="noopener noreferrer">Gold API</a></p>
     </aside>
   </div>
-  <footer>© {{ 2026 }} Coin Calculator. <span data-i18n="copyright">All rights reserved.</span></footer>
+  <footer>© {{ 2026 }} Coin Calculator. <span data-i18n="copyright">{{ t('copyright') }}</span></footer>
 </body>
 </html>

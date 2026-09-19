@@ -42,7 +42,7 @@ class WebTests(unittest.TestCase):
 
     def test_page_and_assets(self):
         """한국어 화면과 계산기에 필요한 정적 자산이 제공되는지 확인한다."""
-        response = self.client.get("/")
+        response = self.client.get("/ko/")
         self.assertEqual(response.status_code, 200)
         self.assertIn('암호화폐 수익률 계산기', response.get_data(as_text=True))
         self.assertIn('role="tablist"', response.get_data(as_text=True))
@@ -55,13 +55,13 @@ class WebTests(unittest.TestCase):
     def test_form_controls_do_not_shadow_methods(self):
         """탭 전환에 쓰는 form.reset 등이 컨트롤에 가려지는 회귀를 방지한다."""
         parser = FormControlParser()
-        parser.feed(self.client.get("/").get_data(as_text=True))
+        parser.feed(self.client.get("/ko/").get_data(as_text=True))
         for reserved in ("reset", "submit", "elements", "requestSubmit", "checkValidity"):
             self.assertNotIn(reserved, parser.identifiers)
 
     def test_currency_selector(self):
         """지원하는 6개 통화 선택값과 입력 단위 연결을 제공한다."""
-        page = self.client.get("/").get_data(as_text=True)
+        page = self.client.get("/ko/").get_data(as_text=True)
         self.assertIn('id="currency-select"', page)
         for currency in ("KRW", "GBP", "USD", "EUR", "CNY", "JPY"):
             self.assertIn(f'value="{currency}"', page)
@@ -69,7 +69,7 @@ class WebTests(unittest.TestCase):
 
     def test_language_selector_includes_united_states(self):
         """요청한 국가 순서로 표시하고 문구가 같은 영국은 제외한다."""
-        page = self.client.get("/").get_data(as_text=True)
+        page = self.client.get("/ko/").get_data(as_text=True)
         self.assertIn('data-lang="en-US"', page)
         self.assertIn("🇺🇸", page)
         self.assertNotIn("🇬🇧", page)
@@ -80,14 +80,14 @@ class WebTests(unittest.TestCase):
 
     def test_japanese_language_and_currency(self):
         """일본어 국기와 JPY 계산·시세 기준 통화를 제공한다."""
-        page = self.client.get("/").get_data(as_text=True)
+        page = self.client.get("/ko/").get_data(as_text=True)
         self.assertIn('data-lang="ja"', page)
         self.assertIn("🇯🇵", page)
         self.assertGreaterEqual(page.count('value="JPY"'), 2)
 
     def test_average_tab_replaces_direction_tabs(self):
         """평균 단가 탭만 제공하고 물타기·불타기 탭은 제거한다."""
-        page = self.client.get("/").get_data(as_text=True)
+        page = self.client.get("/ko/").get_data(as_text=True)
         self.assertIn('data-mode="average"', page)
         self.assertNotIn('data-mode="down"', page)
         self.assertNotIn('data-mode="up"', page)
@@ -145,7 +145,7 @@ class WebTests(unittest.TestCase):
 
     def test_market_layout_and_sources(self):
         """환율 표와 두 API 출처를 사용자 화면에 표시한다."""
-        page = self.client.get("/").get_data(as_text=True)
+        page = self.client.get("/ko/").get_data(as_text=True)
         self.assertIn('class="market-card"', page)
         self.assertIn("ExchangeRate.fun", page)
         self.assertIn("Gold API", page)

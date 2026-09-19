@@ -9,7 +9,8 @@ const tabs = [...document.querySelectorAll('[role=tab]')];
 const modes = ['profit', 'average'];
 const names = [...form.querySelectorAll('input,select')].map(el => el.name);
 const currencies = ['KRW', 'GBP', 'USD', 'EUR', 'CNY', 'JPY'];
-let mode = 'profit', drafts = {}, language = 'ko', currency = 'KRW', t = translator(language).t, lastResult = null, sessionStatus = 'session', timer, requestId = 0, controller;
+const pageLanguage = translator(document.documentElement.lang).lang;
+let mode = 'profit', drafts = {}, language = pageLanguage, currency = 'KRW', t = translator(language).t, lastResult = null, sessionStatus = 'session', timer, requestId = 0, controller;
 let session;
 try { session = createSession(window.sessionStorage); }
 catch { session = createSession({getItem: () => null, setItem: () => { throw Error(); }, removeItem() {}}); }
@@ -18,11 +19,14 @@ const descriptions = {profit: 'descProfit', average: 'descAverage'};
 function applyLanguage(next, save = true) {
   const result = lastResult;
   ({lang: language, t} = translator(next));
-  document.documentElement.lang = language;
+  document.documentElement.lang = language === 'en-US' ? 'en' : language;
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-content]').forEach(el => el.setAttribute('content', t(el.dataset.i18nContent)));
   document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
-  document.querySelectorAll('[data-lang]').forEach(el => el.setAttribute('aria-pressed', String(el.dataset.lang === language)));
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.dataset.lang === language) el.setAttribute('aria-current', 'page');
+    else el.removeAttribute('aria-current');
+  });
   updateFields();
   $('form-title').textContent = t('tab' + mode[0].toUpperCase() + mode.slice(1));
   $('explanation').textContent = t(descriptions[mode]);
@@ -176,7 +180,7 @@ tabs.forEach((tab, index) => {
   });
 });
 $('clear-inputs').addEventListener('click', () => reset());
-document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
+// 언어 링크는 URL로 이동하며 입력값은 기존 세션에서 복원한다.
 $('currency-select').addEventListener('change', event => applyCurrency(event.target.value));
 $('market-refresh').addEventListener('click', () => refreshMarketRates(language, t));
 document.addEventListener('visibilitychange', checkExpiry);
@@ -188,9 +192,9 @@ if (saved && ['profit', 'average', 'down', 'up'].includes(saved.mode) && saved.d
   if (['down', 'up'].includes(saved.mode)) {
     saved.drafts.average = saved.drafts[saved.mode]; saved.mode = 'average';
   }
-  drafts = saved.drafts; language = translator(saved.language).lang; t = translator(language).t;
+  drafts = saved.drafts; // 저장된 언어보다 현재 URL의 언어를 우선한다.
   currency = currencies.includes(saved.currency) ? saved.currency : 'KRW';
   applyLanguage(language, false); applyCurrency(currency, false); selectMode(saved.mode, false);
   timer = setTimeout(() => reset(true), session.remaining());
-} else { session.clear(); applyLanguage('ko', false); applyCurrency('KRW', false); selectMode('profit', false); }
+} else { session.clear(); applyLanguage(pageLanguage, false); applyCurrency('KRW', false); selectMode('profit', false); }
 startMarketRates(() => ({language, t}));
