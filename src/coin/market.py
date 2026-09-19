@@ -29,6 +29,7 @@ class MarketService:
     """그룹별 만료 시간이 다른 시세 데이터를 프로세스 메모리에 저장한다."""
 
     def __init__(self, opener=urlopen, clock=monotonic):
+        """조회 함수와 시계를 주입하고 그룹별 캐시 및 잠금을 초기화한다."""
         self._opener = opener
         self._clock = clock
         self._cache = {}
@@ -71,6 +72,7 @@ class MarketService:
     def currencies(self) -> dict:
         """USD 기준 응답을 1단위당 KRW 가격으로 바꿔 한 시간 캐시한다."""
         def load():
+            """통화별 환율을 조회하고 원화 기준으로 정규화한다."""
             data = self._json(EXCHANGE_URL)
             rates = data.get("rates")
             if not isinstance(rates, dict):
@@ -86,8 +88,10 @@ class MarketService:
     def metals(self) -> dict:
         """금·은의 트로이온스 및 구리의 파운드 가격을 KRW/g으로 환산한다."""
         def load():
+            """금속 시세를 병렬 조회하고 단위별 환산 결과를 모은다."""
             divisors = {"XAU": TROY_OUNCE_GRAMS, "XAG": TROY_OUNCE_GRAMS, "HG": POUND_GRAMS}
             def fetch(symbol):
+                """금속 한 종의 가격을 조회하고 g당 가격으로 환산한다."""
                 data = self._json(GOLD_URL.format(symbol=symbol))
                 return symbol, _positive(data.get("price"), symbol) / divisors[symbol], data.get("updatedAt")
             values, source_times = {}, {}
@@ -102,6 +106,7 @@ class MarketService:
     def bitcoin(self) -> dict:
         """원화 기준 비트코인 1개 가격을 1분 캐시한다."""
         def load():
+            """비트코인 가격과 공급자 갱신 시각을 조회한다."""
             data = self._json(GOLD_URL.format(symbol="BTC"))
             return {"items": {"BTC": _positive(data.get("price"), "BTC")},
                     "source_updated_at": {"BTC": data.get("updatedAt")},

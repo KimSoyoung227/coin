@@ -16,7 +16,8 @@
 - `src/coin/market.py`: 환율·금속·비트코인 조회, 단위 환산 및 메모리 캐시
 - `src/coin/static/rates.js`: 반응형 시세 표 표시 및 1분 갱신
 - `tests/test_session.mjs`: 저장 및 만료 검증 (Node.js 사용, 추가 패키지 없음)
-- `WORK_LOG.md`: 작업 일지 및 정책
+- `AGENTS.md`: 개발·검토·주석·보안·커밋 규칙
+- `WORK_LOG.md`: 날짜순 작업 일지
 
 Python 3.9 이상에서 프로젝트 루트를 기준으로 테스트합니다.
 

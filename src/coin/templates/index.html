@@ -24,8 +24,18 @@
         <p id="explanation" class="explanation">매수·매도 단가와 보유 수량 또는 투자금액을 입력하세요. 수수료율은 매수와 매도에 각각 적용됩니다.</p>
         <form id="calculation-form">
           <div class="fields">
-            <label><span data-i18n="buyPrice">매수 단가</span> <span class="input-wrap"><input name="buy_price" type="number" step="any" min="0" required placeholder="100000"><span data-currency-unit>KRW</span></span></label>
-            <label id="sell-field"><span data-i18n="sellPrice">매도 단가</span> <span class="input-wrap"><input name="sell_price" type="number" step="any" min="0" required placeholder="120000"><span data-currency-unit>KRW</span></span></label>
+            <label class="buy-field"><span class="buy-heading" data-i18n="buyPrice">매수 단가</span> <span class="input-wrap"><input name="buy_price" type="number" step="any" min="0" required placeholder="100000"><span data-currency-unit>KRW</span></span></label>
+            <div id="sell-field" class="sell-field">
+              <div class="sell-heading">
+                <label for="sell-price" data-i18n="sellPrice">매도 단가</label>
+                <div class="sell-presets" role="group" data-i18n-aria="sellPrice" aria-label="매도 단가">
+                  <button type="button" data-sell-percent="5">5%</button>
+                  <button type="button" data-sell-percent="10">10%</button>
+                  <button type="button" data-sell-percent="20">20%</button>
+                </div>
+              </div>
+              <span class="input-wrap"><input id="sell-price" name="sell_price" type="number" step="any" min="0" required placeholder="120000"><span data-currency-unit>KRW</span></span>
+            </div>
             <label><span data-i18n="holdingMethod">보유분 입력 방식</span><select name="holding_unit"><option value="quantity" data-i18n="byQuantity">수량으로 입력</option><option value="amount" data-i18n="byAmount">투자금액으로 입력</option></select></label>
             <label><span id="holding-label">보유 수량</span><span class="input-wrap"><input name="holding_value" type="number" step="any" min="0" required placeholder="예: 0.5"><span id="holding-suffix">개</span></span></label>
             <label id="fee-field"><span data-i18n="feeRate">수수료율</span> <span class="input-wrap"><input name="fee_percent" type="number" step="any" min="0" max="100" value="0" required><span>%</span></span><small data-i18n="feeHelp">매수·매도 각각 적용 · 기본 0%</small></label>

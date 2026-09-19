@@ -149,6 +149,21 @@ form.addEventListener('submit', async event => {
 });
 form.addEventListener('input', () => { if (!checkExpiry()) { updateFields(); invalidate(); persist(); } });
 form.addEventListener('change', () => { if (!checkExpiry()) { updateFields(); invalidate(); persist(); } });
+/** 매수 단가에 선택한 상승률을 적용하고 입력 변경 및 세션 저장을 연결한다. */
+document.querySelectorAll('[data-sell-percent]').forEach(button => button.addEventListener('click', () => {
+  if (checkExpiry() || mode !== 'profit') return;
+  const buy = field('buy_price');
+  const price = buy.valueAsNumber * (1 + Number(button.dataset.sellPercent) / 100);
+  if (!buy.checkValidity() || !(buy.valueAsNumber > 0) || !Number.isFinite(price)) {
+    $('error').textContent = t('invalid');
+    $('error').hidden = false;
+    buy.focus();
+    return;
+  }
+  // 부동소수점 연산 잔여 자릿수를 제거하고 소액 코인 단가도 유지한다.
+  field('sell_price').value = String(Number(price.toPrecision(15)));
+  field('sell_price').dispatchEvent(new Event('input', {bubbles: true}));
+}));
 tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => { if (!checkExpiry()) { capture(); selectMode(tab.dataset.mode); } });
   tab.addEventListener('keydown', event => {

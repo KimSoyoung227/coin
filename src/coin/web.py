@@ -116,11 +116,13 @@ def create_app() -> Flask:
 
     @app.before_request
     def create_csp_nonce():
+        """요청마다 스크립트 허용용 CSP nonce를 생성한다."""
         g.csp_nonce = secrets.token_urlsafe(16)
 
 
     @app.get("/ads.txt")
     def ads_txt():
+        """광고 판매자 정보를 정적 파일로 제공한다."""
         return app.send_static_file("ads.txt")
 
     return app
