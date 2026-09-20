@@ -322,6 +322,18 @@ legend {
   color:var(--muted);
   margin-top:20px
 }
+/* 문의 안내는 작은 화면에서도 줄바꿈하고 링크를 명확히 표시한다. */
+.footer-contact {
+  max-width:800px;
+  margin:12px auto 0;
+  line-height:1.7;
+  overflow-wrap:anywhere
+}
+.footer-contact a {
+  color:var(--blue);
+  text-decoration:underline;
+  text-underline-offset:3px
+}
 footer {
   text-align:center;
   color:var(--muted);

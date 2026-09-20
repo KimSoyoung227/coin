@@ -79,7 +79,9 @@
     "rateSilver": "은",
     "rateCopper": "구리",
     "rateBitcoin": "비트코인",
-    "rateBase": "기준 통화"
+    "rateBase": "기준 통화",
+    "contactBefore": "문의 및 오류 제보는 ",
+    "contactAfter": "에서 받고 있습니다. 개인정보, API 키, 지갑 복구문구 등 민감한 정보는 작성하지 마세요."
   },
   "en-US": {
     "currencyLabel": "Currency",
@@ -161,7 +163,9 @@
     "rateSilver": "Silver",
     "rateCopper": "Copper",
     "rateBitcoin": "Bitcoin",
-    "rateBase": "Base currency"
+    "rateBase": "Base currency",
+    "contactBefore": "For inquiries and bug reports, please use ",
+    "contactAfter": ". Do not include sensitive information such as personal data, API keys, or wallet recovery phrases."
   },
   "es": {
     "currencyLabel": "Moneda",
@@ -243,7 +247,9 @@
     "rateSilver": "Plata",
     "rateCopper": "Cobre",
     "rateBitcoin": "Bitcoin",
-    "rateBase": "Moneda base"
+    "rateBase": "Moneda base",
+    "contactBefore": "Para consultas e informes de errores, utiliza ",
+    "contactAfter": ". No incluyas información sensible como datos personales, claves de API o frases de recuperación de billeteras."
   },
   "zh": {
     "currencyLabel": "货币单位",
@@ -325,7 +331,9 @@
     "rateSilver": "白银",
     "rateCopper": "铜",
     "rateBitcoin": "比特币",
-    "rateBase": "基准货币"
+    "rateBase": "基准货币",
+    "contactBefore": "咨询和错误反馈请通过 ",
+    "contactAfter": " 提交。请勿填写个人信息、API 密钥、钱包助记词等敏感信息。"
   },
   "ja": {
     "currencyLabel": "通貨単位",
@@ -407,6 +415,8 @@
     "rateSilver": "銀",
     "rateCopper": "銅",
     "rateBitcoin": "ビットコイン",
-    "rateBase": "基準通貨"
+    "rateBase": "基準通貨",
+    "contactBefore": "お問い合わせ・不具合の報告は ",
+    "contactAfter": " で受け付けています。個人情報、APIキー、ウォレットのリカバリーフレーズなどの機密情報は記載しないでください。"
   }
 }

@@ -69,6 +69,10 @@
       <p class="market-sources"><span data-i18n="marketSources">{{ t('marketSources') }}</span>: <a href="https://www.exchangerate.fun/" target="_blank" rel="noopener noreferrer">ExchangeRate.fun</a> · <a href="https://gold-api.com/" target="_blank" rel="noopener noreferrer">Gold API</a></p>
     </aside>
   </div>
-  <footer>© {{ 2026 }} Coin Calculator. <span data-i18n="copyright">{{ t('copyright') }}</span></footer>
+  <!-- 문의 링크와 민감정보 작성 금지 안내를 현재 페이지 언어로 제공한다. -->
+  <footer>
+    <div>© {{ 2026 }} Coin Calculator. <span data-i18n="copyright">{{ t('copyright') }}</span></div>
+    <p class="footer-contact"><span data-i18n="contactBefore">{{ t('contactBefore') }}</span><a href="https://github.com/KimSoyoung227/coin/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a><span data-i18n="contactAfter">{{ t('contactAfter') }}</span></p>
+  </footer>
 </body>
 </html>
