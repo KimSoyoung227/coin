@@ -4,7 +4,8 @@ const LOCALES = {
   'en-US': 'en-US',
   es: 'es-ES',
   zh: 'zh-CN',
-  ja: 'ja-JP'
+  ja: 'ja-JP',
+  de: 'de-DE'
 };
 
 /** 지원 언어의 표시 로케일을 반환하고 기본값은 한국어로 유지한다. */

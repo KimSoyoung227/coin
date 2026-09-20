@@ -48,12 +48,12 @@ class SeoTests(unittest.TestCase):
         """선호 언어에 맞게 임시 이동하고 미지원 언어는 영어로 이동한다."""
         for header, expected in [("ko-KR,en;q=0.5", "ko"), ("ja", "ja"),
                                  ("zh-CN", "zh"), ("es-MX", "es"),
-                                 ("en-GB", "en"), ("fr-FR", "en"), ("", "en")]:
+                                 ("de-DE", "de"), ("de-CH", "de"), ("en-GB", "en"), ("fr-FR", "en"), ("", "en")]:
             response = self.client.get("/", headers={"Accept-Language": header})
             self.assertEqual(response.status_code, 302)
             self.assertEqual(response.location, f"/{expected}/")
             self.assertIn("Accept-Language", response.vary)
-        self.assertEqual(self.client.get("/de/").status_code, 404)
+        self.assertEqual(self.client.get("/fr/").status_code, 404)
         self.assertEqual(self.client.get("/ja").status_code, 308)
 
     def test_all_pages_render_localized_content_and_links(self):
@@ -79,7 +79,7 @@ class SeoTests(unittest.TestCase):
                 alternates = {l["hreflang"]: l["href"] for l in links if l.get("rel") == "alternate"}
                 self.assertEqual(alternates, {**{code: f"{SITE_URL}/{code}/" for code in LANGUAGES}, "x-default": SITE_URL + "/"})
                 flags = [e["attrs"] for e in elements if e["tag"] == "a" and "data-lang" in e["attrs"]]
-                self.assertEqual(len(flags), 5)
+                self.assertEqual(len(flags), 6)
                 self.assertEqual([a["hreflang"] for a in flags if a.get("aria-current") == "page"], [language])
                 for link in flags:
                     self.assertEqual(link["href"], f'/{link["hreflang"]}/')
@@ -93,7 +93,7 @@ class SeoTests(unittest.TestCase):
         root = ElementTree.fromstring(response.data)
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
         entries = root.findall("s:url", ns)
-        self.assertEqual(len(entries), 5)
+        self.assertEqual(len(entries), 6)
         self.assertEqual({entry.find("s:loc", ns).text for entry in entries}, {f"{SITE_URL}/{code}/" for code in LANGUAGES})
         for entry in entries:
             links = {link.attrib["hreflang"]: link.attrib["href"] for link in entry.findall("x:link", ns)}

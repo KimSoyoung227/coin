@@ -13,7 +13,7 @@ class LocalizationTests(unittest.TestCase):
         """품질 가중치, 지역 코드, 미지원 및 누락 헤더를 처리한다."""
         for header, expected in [("ko-KR, en;q=0.8", "ko"), ("en-GB", "en"),
                                  ("zh-TW", "zh"), ("es-MX", "es"),
-                                 ("ko;q=0.2,ja;q=0.9", "ja"), ("de", "en"),
+                                 ("ko;q=0.2,ja;q=0.9", "ja"), ("de", "de"), ("de-DE", "de"), ("de-AT", "de"), ("fr", "en"),
                                  ("", "en"), ("ko;q=0,en;q=1", "en")]:
             with self.subTest(header=header):
                 self.assertEqual(preferred_language(parse_accept_header(header, LanguageAccept)), expected)

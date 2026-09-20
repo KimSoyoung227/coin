@@ -6,11 +6,12 @@ from pathlib import Path
 from werkzeug.datastructures import LanguageAccept
 
 MESSAGES = json.loads(Path(__file__).with_name("translations.json").read_text(encoding="utf-8"))
-LANGUAGES = {"ko": "ko", "en": "en-US", "zh": "zh", "ja": "ja", "es": "es"}
+LANGUAGES = {"ko": "ko", "en": "en-US", "zh": "zh", "ja": "ja", "es": "es", "de": "de"}
 SITE_URL = "https://coin.sykim.dev"
 LANGUAGE_LINKS = (
     ("ko", "한국어", "🇰🇷"), ("en", "American English", "🇺🇸"),
     ("zh", "简体中文", "🇨🇳"), ("ja", "日本語", "🇯🇵"), ("es", "Español", "🇪🇸"),
+    ("de", "Deutsch", "🇩🇪"),
 )
 
 

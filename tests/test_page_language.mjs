@@ -18,7 +18,7 @@ function element(name = '') {
     addEventListener(key, handler) { this.handlers[key] = handler; }};
 }
 
-for (const page of ['ko', 'en', 'ja', 'zh', 'es']) {
+for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
   for (const saved of [false, true]) {
     const controls = Object.fromEntries(['buy_price', 'sell_price', 'fee_percent', 'holding_unit', 'holding_value', 'additional_unit', 'additional_price', 'additional_value'].map(name => [name, element(name)]));
     const elements = new Map();
@@ -29,7 +29,7 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es']) {
     form.querySelector = () => get('submit');
     form.reset = () => { for (const field of Object.values(controls)) field.value = ''; controls.holding_unit.value = controls.additional_unit.value = 'quantity'; controls.fee_percent.value = '0'; };
     const tabs = ['profit', 'average'].map(mode => ({...element(), dataset: {mode}}));
-    const flags = ['ko', 'en-US', 'zh', 'ja', 'es'].map(lang => ({...element(), dataset: {lang}}));
+    const flags = ['ko', 'en-US', 'zh', 'ja', 'es', 'de'].map(lang => ({...element(), dataset: {lang}}));
     const data = new Map();
     if (saved) data.set(KEY, JSON.stringify({startedAt: Date.now(), data: {mode: 'average', language: page === 'ko' ? 'ja' : 'ko', currency: 'USD', drafts: {average: {buy_price: '100', holding_value: '2', holding_unit: 'quantity'}}}}));
     const storage = {getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value), removeItem: key => data.delete(key)};
@@ -85,4 +85,4 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es']) {
     assert.equal(get('holding-label').textContent, expected.t('holdingAmount'));
   }
 }
-console.log('5개 URL 언어·세션 복원·국기 링크·입력 저장·매도 버튼·요청 본문 검증 통과');
+console.log('6개 URL 언어·세션 복원·국기 링크·입력 저장·매도 버튼·요청 본문 검증 통과');
