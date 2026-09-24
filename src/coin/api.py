@@ -56,3 +56,15 @@ def market_rates():
     status = 200 if result["groups"] else 503
     return jsonify(result), status
 
+
+
+@api.post('/tax/calculate')
+def tax_calculate():
+    """세금 참고 계산을 수행하며 민감한 거래·소득 입력은 저장하지 않는다."""
+    from coin.taxes import TaxInputError, calculate_tax
+
+    try:
+        result = calculate_tax(request.get_json())
+    except TaxInputError as error:
+        return jsonify(error=error.key, field=error.field), 400
+    return jsonify(result=result)

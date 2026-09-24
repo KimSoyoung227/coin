@@ -1,0 +1,49 @@
+{# 입력별 필수 표시와 총액에 연결된 수수료 체크를 함께 렌더링한다. #}
+{% macro tax_field(f, lot=false) %}
+<div class="tax-field{% if f.kind == 'checkbox' %} tax-check{% endif %}" data-tax-when="{{ f.when | tojson | forceescape }}" {% if f.help %}title="{{ t(f.help) }}"{% endif %}>
+  <label class="tax-input-label">
+  <span data-i18n="{{ f.label }}">{{ t(f.label) }}</span>
+  {% if f.kind == 'select' %}
+  <select name="{{ f.name }}"{% if f.required %} required{% endif %}>
+    <option value="" data-i18n="taxChoose">{{ t('taxChoose') }}</option>
+    {% for value, label in f.options %}<option value="{{ value }}">{{ t(label) if label.startswith('tax') else label }}</option>{% endfor %}
+  </select>
+  {% else %}
+  <input name="{{ f.name }}" type="{{ f.kind }}"{% if f.kind == 'number' %} step="any"{% if not f.get('signed') %} min="0"{% endif %} placeholder="0"{% endif %}{% if f.required %} required{% endif %}>
+  {% endif %}
+  </label>
+  {% if f.name in ['amount', 'sell_amount'] %}
+  <label class="tax-check tax-inline-check"><input type="checkbox" name="{{ 'fees_included' if lot else 'sell_fees_included' }}" checked><span data-i18n="taxIncluded">{{ t('taxIncluded') }}</span></label>
+  {% endif %}
+</div>
+{% endmacro %}
+<section id="tax-panel" class="card" role="tabpanel" aria-labelledby="tab-tax" hidden>
+  <div id="tax-metadata" hidden data-rules="{{ tax_metadata | tojson | forceescape }}"></div>
+  {# 제목 옆에 통화를 표시하고 검증 정보는 제목 영역 오른쪽에 배치한다. #}
+  <div class="section-heading">
+    <h2 data-i18n="taxTab">{{ t('taxTab') }}</h2>
+    <span id="tax-unit"></span>
+    <p id="tax-verified" class="tax-muted"></p>
+  </div>
+  <form id="tax-form" novalidate>
+    <div class="tax-grid">{% for f in tax_basic %}{{ tax_field(f) }}{% endfor %}</div>
+    {# 선택 조건과 변경 안내를 가까이 배치하고 문구 전체를 읽어 준다. #}
+    <p id="tax-rule-note" class="tax-warning" role="status" aria-live="polite" aria-atomic="true"></p>
+    <details id="tax-input-help" class="tax-help"><summary data-i18n="taxLots">{{ t('taxLots') }}</summary><p data-i18n="taxMarketHelp">{{ t('taxMarketHelp') }}</p><p data-i18n="taxBasisHelp">{{ t('taxBasisHelp') }}</p><p data-i18n="taxMoneyHelp">{{ t('taxMoneyHelp') }}</p></details>
+    <fieldset id="tax-trades">
+      <legend data-i18n="taxLots">{{ t('taxLots') }}</legend>
+      <div id="tax-lots"></div>
+      <button type="button" id="tax-add-lot" class="secondary" data-i18n="taxAddLot">{{ t('taxAddLot') }}</button>
+    </fieldset>
+    <fieldset id="tax-disposal">
+      <legend data-i18n="taxDisposal">{{ t('taxDisposal') }}</legend>
+      <div class="tax-grid">{% for f in tax_sale if f.name != 'sell_fees_included' %}{{ tax_field(f) }}{% endfor %}</div>
+    </fieldset>
+    <fieldset id="tax-conditions"><legend data-i18n="taxAnnual">{{ t('taxAnnual') }}</legend><div class="tax-grid">{% for f in tax_conditions %}{{ tax_field(f) }}{% endfor %}</div></fieldset>
+    <p id="tax-error" class="error" role="alert" hidden></p>
+    <div class="actions"><button type="submit" class="primary" data-i18n="taxCalculate">{{ t('taxCalculate') }}</button><button type="button" id="tax-reset" class="secondary" data-i18n="reset">{{ t('reset') }}</button></div>
+  </form>
+  <template id="tax-lot-template"><fieldset class="tax-lot"><legend data-i18n="taxLots">{{ t('taxLots') }}</legend><div class="tax-grid">{% for f in tax_lots if f.name != 'fees_included' %}{{ tax_field(f, true) }}{% endfor %}</div><button type="button" class="tax-remove secondary" data-i18n="taxRemove">{{ t('taxRemove') }}</button></fieldset></template>
+  <section id="tax-results" class="tax-results" aria-live="polite" aria-atomic="true" hidden></section>
+  <p class="tax-muted" data-i18n="taxDisclaimer">{{ t('taxDisclaimer') }}</p>
+</section>

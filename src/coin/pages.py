@@ -13,6 +13,8 @@ from flask import (
 
 from coin.localization import LANGUAGES, SITE_URL, page_context, preferred_language
 
+from coin.tax_ui import tax_context
+
 pages = Blueprint("pages", __name__)
 
 
@@ -31,7 +33,7 @@ def localized_index(language):
     """명시된 URL의 언어로 검색 가능한 계산기 HTML을 렌더링한다."""
     if language not in LANGUAGES:
         abort(404)
-    html = render_template("index.html", **page_context(language))
+    html = render_template("index.html", **page_context(language), **tax_context())
     response = current_app.make_response(html)
     response.headers["Content-Language"] = language
     return response

@@ -1,0 +1,1801 @@
+{
+  "version": "2026.09.24.1",
+  "rules": [
+    {
+      "country": "KR",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "KR",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": "2500000",
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "KR",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": "2500000",
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "suspended"
+    },
+    {
+      "country": "KR",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": "2500000",
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "suspended"
+    },
+    {
+      "country": "US",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "USD",
+      "incomeCategory": "tax_US_stock",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "rates": [
+          "0.10",
+          "0.12",
+          "0.22",
+          "0.24",
+          "0.32",
+          "0.35",
+          "0.37"
+        ],
+        "ordinary": {
+          "single": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            640600
+          ],
+          "joint": [
+            24800,
+            100800,
+            211400,
+            403550,
+            512450,
+            768700
+          ],
+          "separate": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            384350
+          ],
+          "head": [
+            17700,
+            67450,
+            105700,
+            201750,
+            256200,
+            640600
+          ]
+        },
+        "long": {
+          "single": [
+            49450,
+            545500
+          ],
+          "joint": [
+            98900,
+            613700
+          ],
+          "separate": [
+            49450,
+            306850
+          ],
+          "head": [
+            66200,
+            579600
+          ]
+        },
+        "longRates": [
+          "0",
+          "0.15",
+          "0.20"
+        ],
+        "niitRate": "0.038",
+        "niitThresholds": {
+          "single": 200000,
+          "joint": 250000,
+          "separate": 125000,
+          "head": 200000
+        },
+        "lossLimit": 3000,
+        "separateLossLimit": 1500
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.irs.gov/irb/2025-45_IRB",
+        "https://www.irs.gov/taxtopics/tc409",
+        "https://www.irs.gov/taxtopics/tc559",
+        "https://www.irs.gov/filing/digital-assets",
+        "https://www.irs.gov/instructions/i1116"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "US",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "USD",
+      "incomeCategory": "tax_US_stock",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "rates": [
+          "0.10",
+          "0.12",
+          "0.22",
+          "0.24",
+          "0.32",
+          "0.35",
+          "0.37"
+        ],
+        "ordinary": {
+          "single": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            640600
+          ],
+          "joint": [
+            24800,
+            100800,
+            211400,
+            403550,
+            512450,
+            768700
+          ],
+          "separate": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            384350
+          ],
+          "head": [
+            17700,
+            67450,
+            105700,
+            201750,
+            256200,
+            640600
+          ]
+        },
+        "long": {
+          "single": [
+            49450,
+            545500
+          ],
+          "joint": [
+            98900,
+            613700
+          ],
+          "separate": [
+            49450,
+            306850
+          ],
+          "head": [
+            66200,
+            579600
+          ]
+        },
+        "longRates": [
+          "0",
+          "0.15",
+          "0.20"
+        ],
+        "niitRate": "0.038",
+        "niitThresholds": {
+          "single": 200000,
+          "joint": 250000,
+          "separate": 125000,
+          "head": 200000
+        },
+        "lossLimit": 3000,
+        "separateLossLimit": 1500
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.irs.gov/irb/2025-45_IRB",
+        "https://www.irs.gov/taxtopics/tc409",
+        "https://www.irs.gov/taxtopics/tc559",
+        "https://www.irs.gov/filing/digital-assets",
+        "https://www.irs.gov/instructions/i1116"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "US",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "USD",
+      "incomeCategory": "tax_US_crypto",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "rates": [
+          "0.10",
+          "0.12",
+          "0.22",
+          "0.24",
+          "0.32",
+          "0.35",
+          "0.37"
+        ],
+        "ordinary": {
+          "single": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            640600
+          ],
+          "joint": [
+            24800,
+            100800,
+            211400,
+            403550,
+            512450,
+            768700
+          ],
+          "separate": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            384350
+          ],
+          "head": [
+            17700,
+            67450,
+            105700,
+            201750,
+            256200,
+            640600
+          ]
+        },
+        "long": {
+          "single": [
+            49450,
+            545500
+          ],
+          "joint": [
+            98900,
+            613700
+          ],
+          "separate": [
+            49450,
+            306850
+          ],
+          "head": [
+            66200,
+            579600
+          ]
+        },
+        "longRates": [
+          "0",
+          "0.15",
+          "0.20"
+        ],
+        "niitRate": "0.038",
+        "niitThresholds": {
+          "single": 200000,
+          "joint": 250000,
+          "separate": 125000,
+          "head": 200000
+        },
+        "lossLimit": 3000,
+        "separateLossLimit": 1500
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.irs.gov/irb/2025-45_IRB",
+        "https://www.irs.gov/taxtopics/tc409",
+        "https://www.irs.gov/taxtopics/tc559",
+        "https://www.irs.gov/filing/digital-assets",
+        "https://www.irs.gov/instructions/i1116"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "US",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "USD",
+      "incomeCategory": "tax_US_crypto",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "rates": [
+          "0.10",
+          "0.12",
+          "0.22",
+          "0.24",
+          "0.32",
+          "0.35",
+          "0.37"
+        ],
+        "ordinary": {
+          "single": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            640600
+          ],
+          "joint": [
+            24800,
+            100800,
+            211400,
+            403550,
+            512450,
+            768700
+          ],
+          "separate": [
+            12400,
+            50400,
+            105700,
+            201775,
+            256225,
+            384350
+          ],
+          "head": [
+            17700,
+            67450,
+            105700,
+            201750,
+            256200,
+            640600
+          ]
+        },
+        "long": {
+          "single": [
+            49450,
+            545500
+          ],
+          "joint": [
+            98900,
+            613700
+          ],
+          "separate": [
+            49450,
+            306850
+          ],
+          "head": [
+            66200,
+            579600
+          ]
+        },
+        "longRates": [
+          "0",
+          "0.15",
+          "0.20"
+        ],
+        "niitRate": "0.038",
+        "niitThresholds": {
+          "single": 200000,
+          "joint": 250000,
+          "separate": 125000,
+          "head": 200000
+        },
+        "lossLimit": 3000,
+        "separateLossLimit": 1500
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.irs.gov/irb/2025-45_IRB",
+        "https://www.irs.gov/taxtopics/tc409",
+        "https://www.irs.gov/taxtopics/tc559",
+        "https://www.irs.gov/filing/digital-assets",
+        "https://www.irs.gov/instructions/i1116"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "JP",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "JPY",
+      "incomeCategory": "tax_JP_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "stockIncome": "0.15",
+        "reconstruction": "0.021",
+        "stockLocal": "0.05",
+        "local": "0.10",
+        "brackets": [
+          [
+            1950000,
+            "0.05"
+          ],
+          [
+            3300000,
+            "0.10"
+          ],
+          [
+            6950000,
+            "0.20"
+          ],
+          [
+            9000000,
+            "0.23"
+          ],
+          [
+            18000000,
+            "0.33"
+          ],
+          [
+            40000000,
+            "0.40"
+          ],
+          [
+            null,
+            "0.45"
+          ]
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "average",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1937.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+        "https://www.nta.go.jp/publication/pamph/shotoku/kakuteishinkokukankei/kasoutuka/",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2250.htm",
+        "https://www.tax.metro.tokyo.lg.jp/shitsumon/life/sonota"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "JP",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "JPY",
+      "incomeCategory": "tax_JP_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "stockIncome": "0.15",
+        "reconstruction": "0.021",
+        "stockLocal": "0.05",
+        "local": "0.10",
+        "brackets": [
+          [
+            1950000,
+            "0.05"
+          ],
+          [
+            3300000,
+            "0.10"
+          ],
+          [
+            6950000,
+            "0.20"
+          ],
+          [
+            9000000,
+            "0.23"
+          ],
+          [
+            18000000,
+            "0.33"
+          ],
+          [
+            40000000,
+            "0.40"
+          ],
+          [
+            null,
+            "0.45"
+          ]
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "average",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1937.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+        "https://www.nta.go.jp/publication/pamph/shotoku/kakuteishinkokukankei/kasoutuka/",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2250.htm",
+        "https://www.tax.metro.tokyo.lg.jp/shitsumon/life/sonota"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "JP",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "JPY",
+      "incomeCategory": "tax_JP_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          1950000,
+          "0.05"
+        ],
+        [
+          3300000,
+          "0.10"
+        ],
+        [
+          6950000,
+          "0.20"
+        ],
+        [
+          9000000,
+          "0.23"
+        ],
+        [
+          18000000,
+          "0.33"
+        ],
+        [
+          40000000,
+          "0.40"
+        ],
+        [
+          null,
+          "0.45"
+        ]
+      ],
+      "surtaxRules": {
+        "stockIncome": "0.15",
+        "reconstruction": "0.021",
+        "stockLocal": "0.05",
+        "local": "0.10",
+        "brackets": [
+          [
+            1950000,
+            "0.05"
+          ],
+          [
+            3300000,
+            "0.10"
+          ],
+          [
+            6950000,
+            "0.20"
+          ],
+          [
+            9000000,
+            "0.23"
+          ],
+          [
+            18000000,
+            "0.33"
+          ],
+          [
+            40000000,
+            "0.40"
+          ],
+          [
+            null,
+            "0.45"
+          ]
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "average",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1937.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+        "https://www.nta.go.jp/publication/pamph/shotoku/kakuteishinkokukankei/kasoutuka/",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2250.htm",
+        "https://www.tax.metro.tokyo.lg.jp/shitsumon/life/sonota"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "JP",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "JPY",
+      "incomeCategory": "tax_JP_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          1950000,
+          "0.05"
+        ],
+        [
+          3300000,
+          "0.10"
+        ],
+        [
+          6950000,
+          "0.20"
+        ],
+        [
+          9000000,
+          "0.23"
+        ],
+        [
+          18000000,
+          "0.33"
+        ],
+        [
+          40000000,
+          "0.40"
+        ],
+        [
+          null,
+          "0.45"
+        ]
+      ],
+      "surtaxRules": {
+        "stockIncome": "0.15",
+        "reconstruction": "0.021",
+        "stockLocal": "0.05",
+        "local": "0.10",
+        "brackets": [
+          [
+            1950000,
+            "0.05"
+          ],
+          [
+            3300000,
+            "0.10"
+          ],
+          [
+            6950000,
+            "0.20"
+          ],
+          [
+            9000000,
+            "0.23"
+          ],
+          [
+            18000000,
+            "0.33"
+          ],
+          [
+            40000000,
+            "0.40"
+          ],
+          [
+            null,
+            "0.45"
+          ]
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "average",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1937.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+        "https://www.nta.go.jp/publication/pamph/shotoku/kakuteishinkokukankei/kasoutuka/",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2250.htm",
+        "https://www.tax.metro.tokyo.lg.jp/shitsumon/life/sonota"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "CN",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "CNY",
+      "incomeCategory": "tax_CN_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "incomeRate": "0.20",
+        "stampRate": "0.0005"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.chinatax.gov.cn/n810219/n810744/n3752930/n3752974/c3970366/content.html",
+        "https://www.chinatax.gov.cn/chinatax/n810219/n810744/n3752930/n3752974/c5143076/content.html",
+        "https://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1780448",
+        "https://liaoning.chinatax.gov.cn/art/2018/11/7/art_99_3322.html",
+        "https://www.amac.org.cn/xwfb/zjyw/202602/t20260206_27340.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "CN",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "CNY",
+      "incomeCategory": "tax_CN_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "incomeRate": "0.20",
+        "stampRate": "0.0005"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.chinatax.gov.cn/n810219/n810744/n3752930/n3752974/c3970366/content.html",
+        "https://www.chinatax.gov.cn/chinatax/n810219/n810744/n3752930/n3752974/c5143076/content.html",
+        "https://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1780448",
+        "https://liaoning.chinatax.gov.cn/art/2018/11/7/art_99_3322.html",
+        "https://www.amac.org.cn/xwfb/zjyw/202602/t20260206_27340.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "CN",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "CNY",
+      "incomeCategory": "tax_CN_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "incomeRate": "0.20",
+        "stampRate": "0.0005"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.chinatax.gov.cn/n810219/n810744/n3752930/n3752974/c3970366/content.html",
+        "https://www.chinatax.gov.cn/chinatax/n810219/n810744/n3752930/n3752974/c5143076/content.html",
+        "https://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1780448",
+        "https://liaoning.chinatax.gov.cn/art/2018/11/7/art_99_3322.html",
+        "https://www.amac.org.cn/xwfb/zjyw/202602/t20260206_27340.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "review_required"
+    },
+    {
+      "country": "CN",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "CNY",
+      "incomeCategory": "tax_CN_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [],
+      "surtaxRules": {
+        "incomeRate": "0.20",
+        "stampRate": "0.0005"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.chinatax.gov.cn/n810219/n810744/n3752930/n3752974/c3970366/content.html",
+        "https://www.chinatax.gov.cn/chinatax/n810219/n810744/n3752930/n3752974/c5143076/content.html",
+        "https://shanxi.chinatax.gov.cn/web/detail/sx-11400-545-1780448",
+        "https://liaoning.chinatax.gov.cn/art/2018/11/7/art_99_3322.html",
+        "https://www.amac.org.cn/xwfb/zjyw/202602/t20260206_27340.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "review_required"
+    },
+    {
+      "country": "DE",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "EUR",
+      "incomeCategory": "tax_DE_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": 1000,
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": 1000,
+        "jointDeduction": 2000,
+        "threshold": 1000,
+        "capitalRate": "0.25",
+        "solidarityRate": "0.055",
+        "solidarityThreshold": 20350,
+        "solidarityTaper": "0.119",
+        "incomeBands": [
+          12348,
+          17799,
+          69878,
+          277825
+        ],
+        "incomeCoefficients": [
+          "914.51",
+          "1400",
+          "173.10",
+          "2397",
+          "1034.87",
+          "0.42",
+          "11135.63",
+          "0.45",
+          "19470.38"
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.gesetze-im-internet.de/estg/__20.html",
+        "https://www.gesetze-im-internet.de/estg/__23.html",
+        "https://www.gesetze-im-internet.de/estg/__32a.html",
+        "https://www.gesetze-im-internet.de/estg/__32d.html",
+        "https://www.gesetze-im-internet.de/solzg_1995/BJNR097500993.html",
+        "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-03-06-einzelfragen-kryptowerte.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "DE",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "EUR",
+      "incomeCategory": "tax_DE_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": 1000,
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": 1000,
+        "jointDeduction": 2000,
+        "threshold": 1000,
+        "capitalRate": "0.25",
+        "solidarityRate": "0.055",
+        "solidarityThreshold": 20350,
+        "solidarityTaper": "0.119",
+        "incomeBands": [
+          12348,
+          17799,
+          69878,
+          277825
+        ],
+        "incomeCoefficients": [
+          "914.51",
+          "1400",
+          "173.10",
+          "2397",
+          "1034.87",
+          "0.42",
+          "11135.63",
+          "0.45",
+          "19470.38"
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.gesetze-im-internet.de/estg/__20.html",
+        "https://www.gesetze-im-internet.de/estg/__23.html",
+        "https://www.gesetze-im-internet.de/estg/__32a.html",
+        "https://www.gesetze-im-internet.de/estg/__32d.html",
+        "https://www.gesetze-im-internet.de/solzg_1995/BJNR097500993.html",
+        "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-03-06-einzelfragen-kryptowerte.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "DE",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "EUR",
+      "incomeCategory": "tax_DE_crypto",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "threshold",
+      "exemptionAmount": 1000,
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": 1000,
+        "jointDeduction": 2000,
+        "threshold": 1000,
+        "capitalRate": "0.25",
+        "solidarityRate": "0.055",
+        "solidarityThreshold": 20350,
+        "solidarityTaper": "0.119",
+        "incomeBands": [
+          12348,
+          17799,
+          69878,
+          277825
+        ],
+        "incomeCoefficients": [
+          "914.51",
+          "1400",
+          "173.10",
+          "2397",
+          "1034.87",
+          "0.42",
+          "11135.63",
+          "0.45",
+          "19470.38"
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.gesetze-im-internet.de/estg/__20.html",
+        "https://www.gesetze-im-internet.de/estg/__23.html",
+        "https://www.gesetze-im-internet.de/estg/__32a.html",
+        "https://www.gesetze-im-internet.de/estg/__32d.html",
+        "https://www.gesetze-im-internet.de/solzg_1995/BJNR097500993.html",
+        "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-03-06-einzelfragen-kryptowerte.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "DE",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "EUR",
+      "incomeCategory": "tax_DE_crypto",
+      "holdingPeriodRule": "over_calendar_year",
+      "exemptionType": "threshold",
+      "exemptionAmount": 1000,
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": 1000,
+        "jointDeduction": 2000,
+        "threshold": 1000,
+        "capitalRate": "0.25",
+        "solidarityRate": "0.055",
+        "solidarityThreshold": 20350,
+        "solidarityTaper": "0.119",
+        "incomeBands": [
+          12348,
+          17799,
+          69878,
+          277825
+        ],
+        "incomeCoefficients": [
+          "914.51",
+          "1400",
+          "173.10",
+          "2397",
+          "1034.87",
+          "0.42",
+          "11135.63",
+          "0.45",
+          "19470.38"
+        ]
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www.gesetze-im-internet.de/estg/__20.html",
+        "https://www.gesetze-im-internet.de/estg/__23.html",
+        "https://www.gesetze-im-internet.de/estg/__32a.html",
+        "https://www.gesetze-im-internet.de/estg/__32d.html",
+        "https://www.gesetze-im-internet.de/solzg_1995/BJNR097500993.html",
+        "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-03-06-einzelfragen-kryptowerte.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "ES",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "domestic",
+      "currency": "EUR",
+      "incomeCategory": "tax_ES_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          6000,
+          "0.19"
+        ],
+        [
+          50000,
+          "0.21"
+        ],
+        [
+          200000,
+          "0.23"
+        ],
+        [
+          300000,
+          "0.27"
+        ],
+        [
+          null,
+          "0.30"
+        ]
+      ],
+      "surtaxRules": {
+        "brackets": [
+          [
+            6000,
+            "0.19"
+          ],
+          [
+            50000,
+            "0.21"
+          ],
+          [
+            200000,
+            "0.23"
+          ],
+          [
+            300000,
+            "0.27"
+          ],
+          [
+            null,
+            "0.30"
+          ]
+        ],
+        "crossLossLimit": "0.25"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www3.agenciatributaria.gob.es/Sede/irpf/novedades-impuesto/novedades-normativa-2024.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c12-integracion-compensacion-rentas/reglas-integracion-compensacion-rentas/integracion-compensacion-rentas-base-imponible-ahorro.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/24Presentacion/100/7_6_6_2/ganancias_perdidas_monedas_virtuales.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2024/c11-ganancias-perdidas-patrimoniales/monedas-virtuales/compra-venta-monedas-virtuales-tributacion-inversor.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/23Presentacion/100/8_7_3.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "ES",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "stock",
+      "domesticForeignType": "foreign",
+      "currency": "EUR",
+      "incomeCategory": "tax_ES_stock",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          6000,
+          "0.19"
+        ],
+        [
+          50000,
+          "0.21"
+        ],
+        [
+          200000,
+          "0.23"
+        ],
+        [
+          300000,
+          "0.27"
+        ],
+        [
+          null,
+          "0.30"
+        ]
+      ],
+      "surtaxRules": {
+        "brackets": [
+          [
+            6000,
+            "0.19"
+          ],
+          [
+            50000,
+            "0.21"
+          ],
+          [
+            200000,
+            "0.23"
+          ],
+          [
+            300000,
+            "0.27"
+          ],
+          [
+            null,
+            "0.30"
+          ]
+        ],
+        "crossLossLimit": "0.25"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www3.agenciatributaria.gob.es/Sede/irpf/novedades-impuesto/novedades-normativa-2024.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c12-integracion-compensacion-rentas/reglas-integracion-compensacion-rentas/integracion-compensacion-rentas-base-imponible-ahorro.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/24Presentacion/100/7_6_6_2/ganancias_perdidas_monedas_virtuales.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2024/c11-ganancias-perdidas-patrimoniales/monedas-virtuales/compra-venta-monedas-virtuales-tributacion-inversor.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/23Presentacion/100/8_7_3.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "ES",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "EUR",
+      "incomeCategory": "tax_ES_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          6000,
+          "0.19"
+        ],
+        [
+          50000,
+          "0.21"
+        ],
+        [
+          200000,
+          "0.23"
+        ],
+        [
+          300000,
+          "0.27"
+        ],
+        [
+          null,
+          "0.30"
+        ]
+      ],
+      "surtaxRules": {
+        "brackets": [
+          [
+            6000,
+            "0.19"
+          ],
+          [
+            50000,
+            "0.21"
+          ],
+          [
+            200000,
+            "0.23"
+          ],
+          [
+            300000,
+            "0.27"
+          ],
+          [
+            null,
+            "0.30"
+          ]
+        ],
+        "crossLossLimit": "0.25"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www3.agenciatributaria.gob.es/Sede/irpf/novedades-impuesto/novedades-normativa-2024.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c12-integracion-compensacion-rentas/reglas-integracion-compensacion-rentas/integracion-compensacion-rentas-base-imponible-ahorro.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/24Presentacion/100/7_6_6_2/ganancias_perdidas_monedas_virtuales.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2024/c11-ganancias-perdidas-patrimoniales/monedas-virtuales/compra-venta-monedas-virtuales-tributacion-inversor.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/23Presentacion/100/8_7_3.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "ES",
+      "taxYear": 2026,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "EUR",
+      "incomeCategory": "tax_ES_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "none",
+      "exemptionAmount": 0,
+      "brackets": [
+        [
+          6000,
+          "0.19"
+        ],
+        [
+          50000,
+          "0.21"
+        ],
+        [
+          200000,
+          "0.23"
+        ],
+        [
+          300000,
+          "0.27"
+        ],
+        [
+          null,
+          "0.30"
+        ]
+      ],
+      "surtaxRules": {
+        "brackets": [
+          [
+            6000,
+            "0.19"
+          ],
+          [
+            50000,
+            "0.21"
+          ],
+          [
+            200000,
+            "0.23"
+          ],
+          [
+            300000,
+            "0.27"
+          ],
+          [
+            null,
+            "0.30"
+          ]
+        ],
+        "crossLossLimit": "0.25"
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-12-31",
+      "officialSources": [
+        "https://www3.agenciatributaria.gob.es/Sede/irpf/novedades-impuesto/novedades-normativa-2024.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c12-integracion-compensacion-rentas/reglas-integracion-compensacion-rentas/integracion-compensacion-rentas-base-imponible-ahorro.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/24Presentacion/100/7_6_6_2/ganancias_perdidas_monedas_virtuales.html",
+        "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2024/c11-ganancias-perdidas-patrimoniales/monedas-virtuales/compra-venta-monedas-virtuales-tributacion-inversor.html",
+        "https://sede.agenciatributaria.gob.es/Sede/Ayuda/23Presentacion/100/8_7_3.html"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "active"
+    },
+    {
+      "country": "KR",
+      "taxYear": 2027,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "domestic",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": "2500000",
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2027-01-01",
+      "effectiveTo": "2027-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "scheduled"
+    },
+    {
+      "country": "KR",
+      "taxYear": 2027,
+      "taxResidenceType": "individual_resident",
+      "assetType": "crypto",
+      "domesticForeignType": "foreign",
+      "currency": "KRW",
+      "incomeCategory": "tax_KR_crypto",
+      "holdingPeriodRule": "not_applicable",
+      "exemptionType": "deduction",
+      "exemptionAmount": "2500000",
+      "brackets": [],
+      "surtaxRules": {
+        "deduction": "2500000",
+        "incomeRate": "0.20",
+        "localRate": "0.02",
+        "markets": {
+          "KOSPI": [
+            "0.0005",
+            "0.0015"
+          ],
+          "KOSDAQ": [
+            "0.002",
+            "0"
+          ],
+          "KONEX": [
+            "0.001",
+            "0"
+          ]
+        }
+      },
+      "lossOffsetRules": [
+        "same_category_only",
+        "tax_loss_review"
+      ],
+      "costBasisMethod": "FIFO",
+      "taxableEvents": [
+        "sale",
+        "swap",
+        "payment"
+      ],
+      "effectiveFrom": "2027-01-01",
+      "effectiveTo": "2027-12-31",
+      "officialSources": [
+        "https://j.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238935&mi=40370",
+        "https://b.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2201&nttSn=1353905",
+        "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0005&lsiSeq=280901&urlMode=lsScJoRltInfoR",
+        "https://taxlaw.nts.go.kr/downloadPDFFile.do?fleId=300000000001047678&fleSn=923559",
+        "https://www.rda.go.kr/young/content/content0518.do"
+      ],
+      "lastVerifiedAt": "2026-09-20",
+      "status": "scheduled"
+    }
+  ]
+}

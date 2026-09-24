@@ -543,3 +543,196 @@ footer {
     display:none
   }
 }
+
+/* 세금 폼은 조건부 2열 배치와 터치 가능한 도움말을 제공한다. */
+.tax-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px 18px
+}
+.tax-field {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:.8rem
+}
+.tax-field input,.tax-field select {
+  width:100%;
+  min-width:0;
+  min-height:42px;
+  box-sizing:border-box
+}
+.tax-check {
+  flex-direction:row-reverse;
+  justify-content:flex-end;
+  align-items:center
+}
+.tax-check input {
+  width:18px;
+  padding:0;
+  min-height:18px;
+  flex-shrink:0
+}
+.tax-warning,.tax-warnings {
+  padding:12px 16px;
+  border-left:3px solid #c68c28;
+  background:#fff8e8;
+  color:#674c19;
+  font-size:.8rem;
+  line-height:1.65
+}
+.tax-warnings {
+  padding-left:28px
+}
+.tax-warnings li+li {
+  margin-top:8px
+}
+.tax-muted,.tax-sources,.tax-help {
+  font-size:.78rem;
+  line-height:1.7;
+  overflow-wrap:anywhere
+}
+.tax-muted {
+  color:var(--muted)
+}
+.tax-help {
+  margin:18px 0;
+  padding:10px 14px;
+  background:#f4f7fc;
+  border:1px solid var(--line);
+  border-radius:8px
+}
+.tax-help summary {
+  cursor:pointer;
+  padding:5px 0;
+  font-weight:600
+}
+#tax-form fieldset {
+  min-width:0;
+  margin:20px 0;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:10px
+}
+#tax-form legend {
+  font-size:.85rem;
+  font-weight:600;
+  padding:0 6px
+}
+#tax-form .tax-lot {
+  margin-top:8px
+}
+.tax-remove {
+  margin-top:12px
+}
+.tax-results {
+  margin-top:28px;
+  border-top:1px solid var(--line);
+  padding-top:12px
+}
+.tax-status {
+  color:var(--blue);
+  font-weight:700
+}
+.tax-sources a {
+  color:var(--blue)
+}
+@media(max-width:600px) {
+  .tax-grid {
+    grid-template-columns:minmax(0,1fr)
+  }
+  #tax-form fieldset {
+    padding:12px
+  }
+  .tabs button {
+    padding:12px 10px;
+    min-width:0;
+    overflow-wrap:anywhere
+  }
+}
+
+/* 세금 입력의 필수 표시·총액 보조 체크·내역 버튼을 공통 사이트 스타일에 맞춘다. */
+.tax-input-label {
+  display:flex;
+  flex-direction:column;
+  gap:6px
+}
+.tax-input-label:has(> :required) > span::before {
+  content:"* ";
+  color:var(--blue)
+}
+.tax-check > .tax-input-label {
+  flex-direction:row-reverse;
+  justify-content:flex-end;
+  align-items:center
+}
+.tax-inline-check {
+  display:flex;
+  flex-direction:row;
+  gap:6px;
+  font-size:.72rem;
+  color:var(--muted);
+  line-height:1.5
+}
+.tax-inline-check input {
+  width:14px;
+  min-height:14px;
+  height:14px;
+  margin:0
+}
+#tax-add-lot,.tax-remove {
+  border:0;
+  border-radius:9px;
+  padding:10px 16px;
+  font-size:.8rem;
+  font-weight:650
+}
+#tax-add-lot:hover:not(:disabled),.tax-remove:hover:not(:disabled) {
+  background:#e1e8f2;
+  color:var(--blue)
+}
+
+/* 변경된 세법 안내는 붉은 배경을 유지하고 변경 순간에만 짧게 강조한다. */
+#tax-rule-note[data-changed] {
+  background:#fff0f0;
+  border-left:4px solid #c43b3b;
+  color:#8f2424;
+  font-weight:600
+}
+#tax-rule-note[data-changed="odd"] {
+  animation:tax-note-odd .65s ease-out
+}
+#tax-rule-note[data-changed="even"] {
+  animation:tax-note-even .65s ease-out
+}
+@keyframes tax-note-odd {
+  from {box-shadow:0 0 0 3px #c43b3b55}
+  to {box-shadow:0 0 0 0 transparent}
+}
+@keyframes tax-note-even {
+  from {box-shadow:0 0 0 3px #c43b3b55}
+  to {box-shadow:0 0 0 0 transparent}
+}
+@media(prefers-reduced-motion:reduce) {
+  #tax-rule-note[data-changed] {animation:none}
+}
+
+/* 총액에 포함된 직접 수수료는 수정 불가한 텍스트 상태를 명확히 표시한다. */
+.tax-field input[readonly] {
+  background:#edf1f7;
+  color:var(--muted);
+  border-color:transparent;
+  box-shadow:none;
+  cursor:default
+}
+
+/* 세금 제목·검증 정보를 정렬하고 입력 폼과의 간격을 8px 넓힌다. */
+#tax-panel > .section-heading {
+  justify-content:flex-start;
+  margin-bottom:8px
+}
+#tax-verified {
+  margin:0 0 0 auto;
+  text-align:right
+}

@@ -2,6 +2,12 @@
 
 로그인 없는 반응형 암호화폐 계산기. 수익률과 추가 매수 후 평균 단가 계산을 지원합니다.
 
+- `src/coin/taxes.py`: 세금 입력 검증·FIFO/평균 원가 배분·국가별 예상세액
+- `src/coin/data/tax_rules.json`: 과세연도별 규칙·공식 출처·최종 확인일
+- `src/coin/tax_ui.py`, `src/coin/templates/tax.html`: 조건부 입력 정의·세금 폼
+- `src/coin/static/tax.js`: 세금 입력·결과·계산식·세션 연결
+- `tests/test_taxes.py`, `tests/test_tax_ui.mjs`: 세율 경계·입력·UI 상태 검증
+- `TAX_RULES.md`: 검증 출처 및 지원 범위
 - `src/coin/calculations.py`: 손익, 수익률, 추가 매수 평균 단가 계산
 - `tests/test_calculations.py`: 계산 및 입력 검증 테스트
 - `src/coin/web.py`: Flask 앱 팩토리와 Blueprint 등록
@@ -60,3 +66,12 @@ macOS AirPlay 서비스와의 포트 충돌을 피하도록 기본 포트를 505
 국기 아이콘은 언어별 URL 링크이며 계산 입력은 기존 세션에서 복원합니다. 페이지 제목, 메타 설명, 제목·설명·레이블은 서버에서 번역합니다. canonical과 hreflang(6개 언어 및 x-default), `/sitemap.xml`, `/robots.txt`는 공개 도메인 `https://coin.sykim.dev`를 기준으로 생성합니다. 도메인 변경 시 `src/coin/localization.py`의 `SITE_URL`을 변경하세요. 새 DB와 패키지는 필요하지 않습니다.
 
 프런트엔드 검증: `node tests/test_i18n.mjs`, `node tests/test_session.mjs`, `node tests/test_page_language.mjs`, `node tests/test_rates.mjs`.
+
+
+세금 계산 탭은 표시 언어와 독립적으로 세법상 거주 국가를 선택합니다. 6개국의 2026년 규칙과 한국 암호자산의 2027년 예정 규칙을 제공합니다. 미검증 국가·연도는 계산 대신 검토 필요 상태를 표시합니다. 세법 확인일은 2026-09-20이며 자동 갱신 기능은 포함하지 않습니다.
+
+`POST /api/tax/calculate`는 `country`, `year`, `asset`, `market`, `lots` 및 처분·소득 정보를 받습니다. 각 취득·처분 당시 환율은 직접 입력하며 현재 시세를 대신 적용하지 않습니다. 취득 내역은 동일 자산의 미처분 잔여 로트로 입력하고, 연간 다른 거래는 허용되는 분류별 손익으로 합산합니다. 일본은 사용자가 확인한 총평균/신고된 이동평균 원가 풀을 사용합니다. 세무 장부나 모든 과거 거래를 자동 복원하지 않습니다.
+
+세액은 참고 추정입니다. 주·지방세와 개인별 공제의 일부, 외국납부세액공제·조세조약은 별도 검토합니다. 외국 납부액을 넣더라도 자동 공제하지 않고 공제 후 세액은 미확정으로 표시합니다. 수수료 포함 여부를 구분하고 결과에 세목별 세액·계산식·공식 출처를 제공합니다. 세금 입력도 기존 세션과 함께 최초 저장 후 1시간에 삭제됩니다. DB·추가 의존성은 없습니다.
+
+전체 프런트엔드 테스트: `node --test tests/*.mjs`.

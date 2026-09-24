@@ -1,5 +1,6 @@
 /** 입력, 탭 접근성, Python API 호출 및 세션 만료를 연결한다. */
 import {createSession} from './session.js';
+import {createTaxUI} from './tax.js';
 import {translator} from './i18n.js';
 import {localeFor} from './formatting.js';
 import {refreshMarketRates, renderMarketRates, startMarketRates} from './rates.js';
@@ -25,6 +26,7 @@ let controller;
 let session;
 try { session = createSession(window.sessionStorage); }
 catch { session = createSession({getItem: () => null, setItem: () => { throw Error(); }, removeItem() {}}); }
+const taxUI = createTaxUI({current: () => ({language, t}), changed: () => persist(), checkExpiry, resetAll: () => reset()});
 const descriptions = {profit: 'descProfit', average: 'descAverage'};
 /** 현재 계산 탭의 제목과 설명을 함께 갱신한다. */
 function updateModeHeading() {
@@ -89,6 +91,8 @@ function updateFields() {
 }
 /** 현재 탭의 입력을 복사한다. */
 function capture() {
+  drafts.tax = taxUI.capture();
+  if (mode === 'tax') return;
   drafts[mode] = Object.fromEntries(names.map(name => [name, field(name).value]));
 }
 /** 만료 타이머는 입력할 때에도 최초 저장 시각을 유지한다. */
@@ -109,6 +113,10 @@ function persist() {
 /** 탭별 초안을 복원하고 키보드 포커스 및 ARIA 상태를 갱신한다. */
 function selectMode(next, save = true) {
   mode = next;
+  byId('calculator').hidden = mode === 'tax';
+  byId('calculation-results').hidden = mode === 'tax';
+  byId('tax-panel').hidden = mode !== 'tax';
+  if (mode !== 'tax') taxUI.invalidate();
   form.reset();
   const draft = drafts[mode];
   if (draft && typeof draft === 'object') {
@@ -135,6 +143,7 @@ function reset(expired = false) {
   clearTimeout(timer);
   session.clear();
   drafts = {};
+  taxUI.restore();
   selectMode('profit', false);
   sessionStatus = expired ? 'expired' : 'session';
   byId('session-note').textContent = t(sessionStatus);
@@ -254,13 +263,14 @@ window.addEventListener('focus', checkExpiry);
 /** 저장된 탭·입력을 복원하되 표시 언어는 현재 URL을 따른다. */
 function restoreSession() {
   const saved = session.load();
-  if (saved && ['profit', 'average', 'down', 'up'].includes(saved.mode) && saved.drafts && typeof saved.drafts === 'object') {
+  if (saved && ['profit', 'average', 'tax', 'down', 'up'].includes(saved.mode) && saved.drafts && typeof saved.drafts === 'object') {
     // 이전 물타기·불타기 초안은 새 평균 단가 계산 탭으로 이전한다.
     if (['down', 'up'].includes(saved.mode)) {
       saved.drafts.average = saved.drafts[saved.mode];
       saved.mode = 'average';
     }
-    drafts = saved.drafts; // 저장된 언어보다 현재 URL의 언어를 우선한다.
+    drafts = saved.drafts;
+    taxUI.restore(drafts.tax); // 저장된 언어보다 현재 URL의 언어를 우선한다.
     currency = currencies.includes(saved.currency) ? saved.currency : 'KRW';
     applyLanguage(language, false);
     applyCurrency(currency, false);

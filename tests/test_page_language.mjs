@@ -19,7 +19,7 @@ function element(name = '') {
 }
 
 for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
-  for (const saved of [false, true]) {
+  for (const saved of [false, 'average', 'tax']) {
     const controls = Object.fromEntries(['buy_price', 'sell_price', 'fee_percent', 'holding_unit', 'holding_value', 'additional_unit', 'additional_price', 'additional_value'].map(name => [name, element(name)]));
     const elements = new Map();
     const get = id => { if (!elements.has(id)) elements.set(id, element()); return elements.get(id); };
@@ -28,14 +28,15 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
     form.querySelectorAll = () => Object.values(controls);
     form.querySelector = () => get('submit');
     form.reset = () => { for (const field of Object.values(controls)) field.value = ''; controls.holding_unit.value = controls.additional_unit.value = 'quantity'; controls.fee_percent.value = '0'; };
-    const tabs = ['profit', 'average'].map(mode => ({...element(), dataset: {mode}}));
+    const tabs = ['profit', 'average', 'tax'].map(mode => ({...element(), dataset: {mode}}));
     const flags = ['ko', 'en-US', 'zh', 'ja', 'es', 'de'].map(lang => ({...element(), dataset: {lang}}));
     const data = new Map();
-    if (saved) data.set(KEY, JSON.stringify({startedAt: Date.now(), data: {mode: 'average', language: page === 'ko' ? 'ja' : 'ko', currency: 'USD', drafts: {average: {buy_price: '100', holding_value: '2', holding_unit: 'quantity'}}}}));
+    if (saved) data.set(KEY, JSON.stringify({startedAt: Date.now(), data: {mode: saved, language: page === 'ko' ? 'ja' : 'ko', currency: 'USD', drafts: {tax: {country:'DE',asset:'crypto'}, average: {buy_price: '100', holding_value: '2', holding_unit: 'quantity'}}}}));
     const storage = {getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value), removeItem: key => data.delete(key)};
     const document = {documentElement: {lang: page}, getElementById: get, addEventListener() {}, querySelectorAll: selector => selector === '[role=tab]' ? tabs : selector === '[data-lang]' ? flags : []};
     let marketLanguage;
-    const context = vm.createContext({document, Event, window: {sessionStorage: storage, addEventListener() {}}, createSession, translator, localeFor, renderMarketRates() {}, refreshMarketRates() {}, startMarketRates: current => {marketLanguage = current().language;}, setTimeout: () => 1, clearTimeout() {}});
+    let taxDraft={};
+    const context = vm.createContext({document, Event, window: {sessionStorage: storage, addEventListener() {}}, createSession, translator, localeFor, createTaxUI: () => ({capture: () => taxDraft, restore(value) {taxDraft=value || {};}, invalidate() {}}), renderMarketRates() {}, refreshMarketRates() {}, startMarketRates: current => {marketLanguage = current().language;}, setTimeout: () => 1, clearTimeout() {}});
     vm.runInContext(source, context);
     const expected = translator(page);
     assert.equal(document.documentElement.lang, page);
@@ -44,7 +45,9 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
     assert.equal(get('session-note').textContent, expected.t('session'));
     assert.equal(flags.filter(flag => flag.attributes['aria-current'] === 'page')[0].dataset.lang, expected.lang);
     assert.ok(flags.every(flag => !flag.handlers.click), '국기 링크의 기본 URL 이동을 가로채지 않는다');
-    if (saved) {
+    assert.equal(get('tax-panel').hidden, saved !== 'tax');
+    if (saved === 'tax') assert.equal(taxDraft.country, 'DE');
+    if (saved === 'average') {
       assert.equal(controls.buy_price.value, '100');
       assert.equal(controls.holding_value.value, '2');
       assert.equal(get('currency-select').value, 'USD');
@@ -83,6 +86,15 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
     assert.equal(payload.additional_price, '25');
     assert.equal('sell_price' in payload, false);
     assert.equal(get('holding-label').textContent, expected.t('holdingAmount'));
+    tabs[2].handlers.click();
+    assert.equal(get('tax-panel').hidden,false);
+    assert.equal(get('calculator').hidden,true);
+    assert.equal(get('calculation-results').hidden,true);
+    assert.equal(JSON.parse(data.get(KEY)).data.mode,'tax');
+    context.reset(true);
+    assert.equal(get('tax-panel').hidden,true);
+    assert.equal(JSON.stringify(taxDraft),'{}');
+    assert.equal(data.has(KEY),false);
   }
 }
 console.log('6개 URL 언어·세션 복원·국기 링크·입력 저장·매도 버튼·요청 본문 검증 통과');
