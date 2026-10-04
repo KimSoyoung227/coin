@@ -5,6 +5,7 @@ from flask import Flask
 from coin.api import api
 from coin.market import MarketService
 from coin.pages import pages
+from coin.v2_pages import v2_pages
 from coin.security import register_request_handlers
 
 
@@ -15,6 +16,7 @@ def create_app() -> Flask:
     app.json.ensure_ascii = False
     app.extensions["market_service"] = MarketService()
     app.register_blueprint(pages)
+    app.register_blueprint(v2_pages)
     app.register_blueprint(api)
     register_request_handlers(app)
     return app

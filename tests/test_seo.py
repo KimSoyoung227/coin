@@ -7,6 +7,7 @@ from xml.etree import ElementTree
 
 from coin.localization import LANGUAGES, MESSAGES, SITE_URL
 from coin.web import create_app
+from coin.v2_pages import V2_PATHS
 
 
 class PageParser(HTMLParser):
@@ -93,9 +94,13 @@ class SeoTests(unittest.TestCase):
         root = ElementTree.fromstring(response.data)
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
         entries = root.findall("s:url", ns)
-        self.assertEqual(len(entries), 6)
-        self.assertEqual({entry.find("s:loc", ns).text for entry in entries}, {f"{SITE_URL}/{code}/" for code in LANGUAGES})
+        self.assertEqual(len(entries), 6 + len(V2_PATHS))
+        self.assertEqual({entry.find("s:loc", ns).text for entry in entries},
+                         {f"{SITE_URL}/{code}/" for code in LANGUAGES} |
+                         {SITE_URL + path for path in V2_PATHS})
         for entry in entries:
+            if entry.find("s:loc", ns).text in {SITE_URL + path for path in V2_PATHS}:
+                continue
             links = {link.attrib["hreflang"]: link.attrib["href"] for link in entry.findall("x:link", ns)}
             self.assertEqual(links, {**{code: f"{SITE_URL}/{code}/" for code in LANGUAGES}, "x-default": SITE_URL + "/"})
         robots = self.client.get("/robots.txt")

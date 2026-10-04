@@ -285,4 +285,7 @@ function restoreSession() {
 }
 
 restoreSession();
+// V2의 세금·수익 링크는 URL 조각으로 기존 탭을 직접 열며 입력은 URL에 넣지 않는다.
+const linkedMode = {'#tax': 'tax', '#profit': 'profit'}[window.location?.hash];
+if (linkedMode) selectMode(linkedMode, false);
 startMarketRates(() => ({language, t}));

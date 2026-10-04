@@ -95,6 +95,15 @@ for (const page of ['ko', 'en', 'ja', 'zh', 'es', 'de']) {
     assert.equal(get('tax-panel').hidden,true);
     assert.equal(JSON.stringify(taxDraft),'{}');
     assert.equal(data.has(KEY),false);
+    // V2에서 연결한 URL 조각은 저장 없이 해당 기존 계산 탭을 연다.
+    const linkedSource = source.slice(source.indexOf('const linkedMode ='), source.indexOf('startMarketRates(()'));
+    for (const hash of ['#tax', '#profit']) {
+      context.window.location = {hash};
+      vm.runInContext(`{ ${linkedSource} }`, context);
+      assert.equal(get('tax-panel').hidden, hash !== '#tax');
+      assert.equal(get('calculator').hidden, hash === '#tax');
+      assert.equal(data.has(KEY), false);
+    }
   }
 }
 console.log('6개 URL 언어·세션 복원·국기 링크·입력 저장·매도 버튼·요청 본문 검증 통과');

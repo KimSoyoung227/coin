@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title><meta name="description" content="{{ page_description }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title }}"><meta property="og:description" content="{{ page_description }}"><meta property="og:url" content="{{ canonical_url }}"><meta property="og:type" content="website">
+  <link rel="stylesheet" href="{{ url_for('static', filename='v2.css') }}">
+  <script type="module" nonce="{{ g.csp_nonce }}" src="{{ url_for('static', filename='v2.js') }}"></script>
+</head>
+<body data-calculator="{{ calculator_slug|default('home') }}">
+<a class="skip" href="#main">본문으로 이동</a>
+{# Shared navigation marks the active destination without linking to itself. #}
+{% set calculators = [('average-price', '평균매입단가'), ('target-average', '목표 평균단가'), ('additional-buy', '추가매수 시나리오')] %}
+<header class="site-header">{% if calculator_slug == 'home' and not info_page %}<span class="brand" aria-current="page">투자 계산실 <span class="badge">V2</span></span>{% else %}<a class="brand" href="/v2/">투자 계산실 <span class="badge">V2</span></a>{% endif %}<nav aria-label="주 메뉴">{% for slug, label in calculators %}{% if calculator_slug == slug %}<span aria-current="page">{{ label }}</span>{% else %}<a href="/calculator/{{ slug }}">{{ label }}</a>{% endif %}{% endfor %}<a href="/ko/#tax">세금·비용</a></nav></header>
+<main id="main">
+{% if info_page %}
+<section class="page-intro"><h1>{{ page_title }}</h1></section>
+<article class="panel prose">
+{% if info_page == 'about' %}<h2>숫자를 이해하는 투자 계산 도구</h2><p>국내주식, 해외주식, ETF, 금, 가상자산과 기타 투자자산의 평균매입단가를 계산하고 입력 조건에 따른 변화를 비교합니다. 회원가입 없이 사용할 수 있습니다.</p><p>평균매입단가, 목표 평균단가, 추가매수 시나리오를 먼저 제공합니다. 기존 계산기와 세금 계산은 기존 화면에서 계속 이용할 수 있습니다.</p><p>종목이나 매매를 추천하지 않으며, 미래 시장가격을 예측하지 않습니다.</p>
+{% elif info_page == 'privacy' %}<h2>투자정보의 처리</h2><p>새 평균매입단가·목표 평균단가·추가매수 시나리오 계산기에 입력한 투자정보는 브라우저에서 계산합니다. 이 입력값을 서버로 전송하거나 서버 데이터베이스에 저장하지 않으며, 계산 기록을 브라우저 저장소에도 보관하지 않습니다.</p><p>기존 계산기는 계산을 위해 입력값을 서버로 전송할 수 있습니다. 투자정보는 서버 데이터베이스에 저장하지 않습니다. 기존 계산기는 입력값을 브라우저의 sessionStorage에 임시 보관하며 1시간 만료 정책을 사용합니다. 기존 화면의 참고가격·환율 조회에는 외부 데이터 제공 서비스가 사용됩니다.</p><p>사이트 접속 과정에서 서버 운영을 위한 접속 정보가 처리될 수 있습니다. 기존 화면에는 외부 광고 서비스가 포함되어 있으며 해당 서비스의 개인정보 처리 정책이 적용될 수 있습니다.</p><h2>문의</h2><p>개인정보 관련 문의는 아래 GitHub Issues를 이용해 주세요. 공개된 문의에 계좌번호나 개인 투자정보를 남기지 마세요.</p>
+{% else %}<h2>계산 결과의 이용</h2><p>본 사이트의 계산 결과는 참고 목적으로 제공되며 투자 권유 또는 금융·세무 자문을 목적으로 하지 않습니다.</p><p>실제 결과는 금융기관, 증권사, 거래소, 적용 환율, 수수료, 세법 및 개인별 과세조건 등에 따라 달라질 수 있습니다.</p><p>세금 계산 결과는 입력된 조건과 표시된 과세 기준연도를 바탕으로 한 참고용 추정치이며 실제 신고·납부 세액과 다를 수 있습니다.</p><p>새 평균매입 계산은 수수료, 세금 및 환율 변동을 반영하지 않습니다. 동일 통화와 동일 수량 단위의 가격을 입력해 주세요. 목표값과 시나리오는 사용자가 설정한 조건의 계산이며 시장 예측이 아닙니다.</p>{% endif %}
+</article>
+{% elif calculator_slug == 'home' %}
+<section class="page-intro"><h1>투자 계산기</h1><p>국내주식·해외주식·ETF·금·가상자산의 투자 조건을 계산합니다.</p></section>
+<section class="panel calculator-directory" aria-label="계산기 목록"><ul><li><a href="/calculator/average-price">평균매입단가</a><span>추가매수 후 평균단가와 총 투자금</span></li><li><a href="/calculator/target-average">목표 평균단가</a><span>목표에 필요한 추가수량과 투자금</span></li><li><a href="/calculator/additional-buy">추가매수 시나리오</a><span>수량·투자금별 결과를 표와 그래프로 비교</span></li><li><a href="/ko/#tax">기존 계산기 · 세금</a><span>세금 계산, 참고가격·참고환율 조회</span></li></ul></section>
+{% else %}
+<section class="page-intro"><h1>{{ page_title }}</h1><p>{{ page_description }}</p></section>
+<div class="calculator-layout"><section class="panel input-panel"><h2>계산 조건</h2><noscript><p>브라우저 내 계산을 사용하려면 JavaScript를 켜 주세요.</p></noscript><form id="calculator-form" novalidate><fieldset id="calculator-fields" disabled><div class="field-grid"><label>자산 종류<select id="asset" name="asset"></select></label><label>가격 통화<select id="currency"><option>KRW</option><option>USD</option><option>EUR</option><option>JPY</option><option>GBP</option><option>CAD</option><option>AUD</option><option>CHF</option><option>CNY</option></select></label></div><label id="gold-unit-field" hidden>금 수량 단위<select id="gold-unit"><option value="g">g</option><option value="kg">kg</option><option value="oz">oz (트로이온스)</option></select></label><p id="unit-note" class="field-note"></p><div class="field-grid"><label for="buyPrice">현재 평균매입단가<input id="buyPrice" name="buyPrice" inputmode="numeric" pattern="[0-9]+" placeholder="예: 50000" required autocomplete="off"></label><label for="quantity">현재 보유수량<input id="quantity" name="quantity" inputmode="decimal" placeholder="예: 10" required autocomplete="off"></label><label for="additionalPrice">추가 매수가<input id="additionalPrice" name="additionalPrice" inputmode="numeric" pattern="[0-9]+" placeholder="예: 40000" required autocomplete="off"></label>
+{% if calculator_slug == 'average-price' %}<label for="additionalQuantity">추가 매수수량<input id="additionalQuantity" name="additionalQuantity" inputmode="decimal" placeholder="예: 10" required autocomplete="off"></label>{% elif calculator_slug == 'target-average' %}<label for="targetPrice">목표 평균단가<input id="targetPrice" name="targetPrice" inputmode="numeric" pattern="[0-9]+" placeholder="예: 45000" required autocomplete="off"></label>{% endif %}</div>
+{% if calculator_slug == 'additional-buy' %}<label>비교 기준<select id="scenario-mode"><option value="quantities">추가 매수수량</option><option value="amounts">추가 투자금액</option></select></label><label for="scenarios">시나리오별 값 (쉼표로 구분)<input id="scenarios" name="scenarios" placeholder="예: 5, 10, 20" required autocomplete="off"></label><p class="field-note">2~8개 조건을 입력하세요. 금액 기준은 거래 가능한 수량으로 내림하여 비교합니다.</p>{% endif %}
+<p class="field-note">수수료·세금 제외. 통화 변경은 환전 계산이 아닙니다.</p><p id="form-error" class="error" role="alert" hidden></p><div class="actions"><button class="button" type="submit">계산하기 <span aria-hidden="true">→</span></button><button class="reset" type="reset">초기화</button></div><p class="privacy-note">이 계산기에 입력한 투자정보는 브라우저에서만 계산하며 서버로 전송하지 않습니다.</p></fieldset></form></section>
+<section class="panel result-panel" aria-labelledby="result-title"><h2 id="result-title">계산 결과</h2><div id="result-empty" class="empty-result"><p>조건을 입력하고 계산하기를 눌러 주세요.</p></div><div id="result" aria-live="polite" hidden></div></section></div>
+<section class="panel guide" id="calculation-guide"><h2>계산 원리</h2><p class="formula">새 평균단가 = (현재 평균단가 × 보유수량 + 추가 매수가 × 추가수량) ÷ (보유수량 + 추가수량)</p>{% if calculator_slug == 'target-average' %}<p>필요 추가수량 = 현재 수량 × (현재 평균단가 − 목표 평균단가) ÷ (목표 평균단가 − 추가 매수가)</p><p>현재 평균단가가 이미 목표와 같다면 추가수량은 0입니다. 그 외에는 목표가 현재 평균단가와 추가 매수가 사이에 있어야 합니다. 거래 단위에 맞춰 수량을 올림하므로 최종 평균단가는 목표와 조금 다를 수 있습니다.</p>{% endif %}<p>단가·금액은 정수로 반올림해 표시합니다. 금 단위 변경 시 가격·수량을 다시 입력하세요. 가상자산 수량은 소수점 8자리까지 지원합니다.</p><nav class="related" aria-label="관련 계산기">{% for slug, label in calculators %}{% if calculator_slug != slug %}<a href="/calculator/{{ slug }}">{{ label }} →</a>{% endif %}{% endfor %}</nav></section>
+{% endif %}
+</main>
+{# Compact shared footer omits links back to the current page. #}
+<footer><p>© 2026 sykim · 계산 결과는 참고용입니다.</p><nav aria-label="하단 메뉴">{% if calculator_slug != 'average-price' %}<a href="/calculator/average-price">계산기</a>{% endif %}{% if calculator_slug in ['average-price', 'target-average', 'additional-buy'] %}<a href="#calculation-guide">계산 가이드</a>{% else %}<a href="/calculator/average-price#calculation-guide">계산 가이드</a>{% endif %}{% for slug, label in [('about', 'About'), ('privacy', '개인정보처리방침'), ('disclaimer', '면책사항')] %}{% if info_page == slug %}<span aria-current="page">{{ label }}</span>{% else %}<a href="/{{ slug }}">{{ label }}</a>{% endif %}{% endfor %}<a href="https://github.com/KimSoyoung227/coin/issues" target="_blank" rel="noopener noreferrer">문의 ↗</a></nav></footer>
+</body></html>

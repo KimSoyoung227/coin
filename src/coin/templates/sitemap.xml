@@ -5,4 +5,5 @@
 {% for alternate in languages %}    <xhtml:link rel="alternate" hreflang="{{ alternate }}" href="{{ site_url }}/{{ alternate }}/" />
 {% endfor %}    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site_url }}/" />
   </url>
+{% endfor %}{% for path in v2_paths %}  <url><loc>{{ site_url }}{{ path }}</loc></url>
 {% endfor %}</urlset>

@@ -14,6 +14,7 @@ from flask import (
 from coin.localization import LANGUAGES, SITE_URL, page_context, preferred_language
 
 from coin.tax_ui import tax_context
+from coin.v2_pages import V2_PATHS
 
 pages = Blueprint("pages", __name__)
 
@@ -42,7 +43,7 @@ def localized_index(language):
 @pages.get("/sitemap.xml")
 def sitemap():
     """각 언어 URL과 상호 대체 언어 링크를 XML 사이트맵으로 제공한다."""
-    xml = render_template("sitemap.xml", languages=LANGUAGES, site_url=SITE_URL)
+    xml = render_template("sitemap.xml", languages=LANGUAGES, site_url=SITE_URL, v2_paths=V2_PATHS)
     return Response(xml, mimetype="application/xml")
 
 
